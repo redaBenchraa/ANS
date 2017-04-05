@@ -38,4 +38,5 @@
 
     <!-- Group -->
     <string name="post_something">Write a post</string>
+    <string name="addPoll">Add a poll</string>
 </resources>
