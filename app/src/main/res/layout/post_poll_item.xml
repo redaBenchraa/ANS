@@ -82,46 +82,20 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp">
 
-        <TextView
-            android:text="File name"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/textView2"
-            android:layout_weight="1"
-            android:textColor="?android:attr/actionMenuTextColor"
-            android:padding="5dp"
-            android:layout_margin="0dp"
-            android:paddingRight="10dp" />
-
         <LinearLayout
             android:orientation="horizontal"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="1">
 
-            <Button
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:id="@+id/button3"
-                android:layout_weight="1"
-                style="@style/Widget.AppCompat.Button.Borderless.Colored"
-                android:padding="5dp"
-                android:layout_marginLeft="10dp"
-                android:layout_marginRight="10dp"
-                android:text="@string/download" />
-
-            <Button
-                android:text="@string/preview"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:id="@+id/button_download"
-                android:layout_weight="1"
-                style="@style/Widget.AppCompat.Button.Borderless.Colored"
-                android:layout_marginLeft="10dp"
-                android:layout_marginRight="10dp" />
         </LinearLayout>
 
     </LinearLayout>
+
+    <ListView
+        android:layout_width="match_parent"
+        android:layout_height="190dp"
+        android:id="@+id/listView_polls" />
     <View android:layout_width="fill_parent" android:layout_height="2dp" android:background="?android:attr/colorButtonNormal"/>
 
     <LinearLayout

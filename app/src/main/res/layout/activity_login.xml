@@ -7,8 +7,6 @@
     android:fitsSystemWindows="true"
     tools:context="com.example.reda_benchraa.asn.login">
 
-    <include layout="@layout/content_login" />
-
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/fab"
         android:layout_width="wrap_content"
@@ -17,5 +15,7 @@
         android:layout_margin="@dimen/fab_margin"
         app:srcCompat="@android:drawable/ic_menu_edit"
         app:backgroundTint="@color/colorPrimary" />
+
+    <include layout="@layout/content_login" />
 
 </android.support.design.widget.CoordinatorLayout>
