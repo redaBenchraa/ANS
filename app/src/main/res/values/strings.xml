@@ -35,4 +35,5 @@
     <string name="post">Post</string>
     <string name="preview">Preview</string>
     <string name="download">Download</string>
+    <string name="title_activity_my_messages">MyMessages</string>
 </resources>
