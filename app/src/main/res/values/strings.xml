@@ -27,17 +27,12 @@
     <string name="settings">SETTINGS</string>
     <string name="help">HELP</string>
     <string name="signout">SIGN OUT</string>
-<<<<<<< Updated upstream
     <!--info group-->
     <string name="owner">Group owner</string>
     <string name="admins">Group admins</string>
     <string name="members">Group members</string>
-=======
     <!-- Post -->
     <string name="post">Post</string>
     <string name="preview">Preview</string>
     <string name="download">Download</string>
-
->>>>>>> Stashed changes
-
 </resources>
