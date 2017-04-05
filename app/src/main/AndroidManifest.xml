@@ -22,14 +22,16 @@
             android:theme="@style/AppTheme" />
         <activity android:name=".group" />
         <activity android:name=".group_poll">
+
+        </activity>
+        <activity android:name=".mynotification" />
+        <activity android:name=".post">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".mynotification" />
-        <activity android:name=".post"></activity>
     </application>
 
 </manifest>
