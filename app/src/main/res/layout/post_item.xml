@@ -93,7 +93,7 @@
             <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                app:srcCompat="@drawable/ic_thumbUp_activated"
+                app:srcCompat="@drawable/ic_thumbup_activated"
                 android:id="@+id/imageView4" />
 
             <TextView
@@ -114,7 +114,7 @@
             <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                app:srcCompat="@drawable/ic_thumDown"
+                app:srcCompat="@drawable/ic_thumdown"
                 android:id="@+id/imageView5" />
 
             <TextView

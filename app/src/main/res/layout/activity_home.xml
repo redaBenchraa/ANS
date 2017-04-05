@@ -9,7 +9,6 @@
     <include
         android:id="@+id/tool_bar"
         layout="@layout/toolbar">
-
     </include>
 
     <ListView

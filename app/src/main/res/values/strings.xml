@@ -35,4 +35,7 @@
     <string name="post">Post</string>
     <string name="preview">Preview</string>
     <string name="download">Download</string>
+
+    <!-- Group -->
+    <string name="post_something">Write a post</string>
 </resources>
