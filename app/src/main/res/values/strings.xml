@@ -1,0 +1,31 @@
+<resources>
+    <string name="app_name">ASN</string>
+    <string name="action_settings">Settings</string>
+    <!-- Sign up page -->
+    <string name="firstName">First name</string>
+    <string name="emailSignUp">Email</string>
+    <string name="lastName">Last name</string>
+    <string name="password1">Password</string>
+    <string name="password2">Rewrite password</string>
+    <string name="signup">Sign up</string>
+    <!-- Login page -->
+    <string name="name">Student Hub</string>
+    <string name="email">Enter your email</string>
+    <string name="password">Enter your password</string>
+    <string name="signin">Sign in</string>
+    <!-- my profile -->
+    <string name="save">Save</string>
+    <string name="show">Show</string>
+    <string name="hide">Hide</string>
+    <string name="title_activity_profile">Profile</string>
+    <!-- Toolbar -->
+    <string name="myProfile">MY PROFILE</string>
+    <string name="myGroups">MY GROUPS</string>
+    <string name="myMessages">MY MESSAGES</string>
+    <string name="myNotifications">MY NOTIFICATIONS</string>
+    <string name="myContacts">MY CONTACTS</string>
+    <string name="settings">SETTINGS</string>
+    <string name="help">HELP</string>
+    <string name="signout">SIGN OUT</string>
+
+</resources>
