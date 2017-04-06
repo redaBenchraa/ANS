@@ -13,7 +13,6 @@
             android:label="@string/app_name"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".SignUpActivity" />
-
         <activity android:name=".MyProfile" />
         <activity android:name=".MyGroups" />
         <activity android:name=".home" />
@@ -22,19 +21,18 @@
             android:label="@string/title_activity_profile"
             android:theme="@style/AppTheme" />
         <activity android:name=".group" />
-        <activity android:name=".group_poll"></activity>
+        <activity android:name=".group_poll" />
         <activity android:name=".mynotification" />
         <activity android:name=".post">
+
+        </activity>
+        <activity android:name=".conversation">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity
-            android:name=".conversation"
-            android:label="@string/title_activity_conversation"
-            android:theme="@style/AppTheme"></activity>
     </application>
 
 </manifest>
