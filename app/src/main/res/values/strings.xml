@@ -41,4 +41,5 @@
     <!--New Message-->
     <string name="message">Write your message</string>
     <string name="addPoll">Add a poll</string>
+    <string name="comment">Comment ...</string>
 </resources>
