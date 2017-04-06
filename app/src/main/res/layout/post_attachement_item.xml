@@ -21,7 +21,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 app:srcCompat="@mipmap/ic_launcher"
-                android:id="@+id/imageView" />
+                android:id="@+id/post_attachment_groupImage" />
 
             <LinearLayout
                 android:orientation="vertical"
@@ -37,7 +37,7 @@
                         android:text="groupName"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:id="@+id/groupName"
+                        android:id="@+id/post_attachment_groupName"
                         android:textSize="18sp"
                         android:textColor="?attr/colorControlNormal"
                         android:textStyle="bold"
@@ -48,15 +48,15 @@
                         android:text="2 min ago"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:id="@+id/date"
+                        android:id="@+id/post_attachment_date"
                         android:layout_weight="0" />
                 </LinearLayout>
 
                 <TextView
-                    android:text="Published"
+                    android:text="Publisher"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:id="@+id/published"
+                    android:id="@+id/post_attachment_publisher"
                     android:layout_marginBottom="10dp"
                     android:layout_marginEnd="10dp"
                     android:layout_marginLeft="10dp"
@@ -74,7 +74,7 @@
         android:text="Lorem ipsum dolor sit amet, ne feugait prodesset eos. Nam ut sonet partem, omnes consul vituperatoribus."
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/textView5" />
+        android:id="@+id/post_attachment_text" />
 
     <LinearLayout
         android:orientation="vertical"
@@ -86,7 +86,7 @@
             android:text="File name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/textView2"
+            android:id="@+id/post_attachment_fileName"
             android:layout_weight="1"
             android:textColor="?android:attr/actionMenuTextColor"
             android:padding="5dp"
@@ -102,7 +102,7 @@
             <Button
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/button3"
+                android:id="@+id/post_attachment_downloadButton"
                 android:layout_weight="1"
                 style="@style/Widget.AppCompat.Button.Borderless.Colored"
                 android:padding="5dp"
@@ -114,7 +114,7 @@
                 android:text="@string/preview"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/button_download"
+                android:id="@+id/post_attachment_previewButton"
                 android:layout_weight="1"
                 style="@style/Widget.AppCompat.Button.Borderless.Colored"
                 android:layout_marginLeft="10dp"
@@ -147,7 +147,7 @@
                 android:text="20"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:id="@+id/textView3"
+                android:id="@+id/post_attachment_ups"
                 android:gravity="center_vertical" />
         </LinearLayout>
 
@@ -168,7 +168,7 @@
                 android:text="12"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:id="@+id/textView4"
+                android:id="@+id/post_attachment_downs"
                 android:gravity="center_vertical" />
 
         </LinearLayout>

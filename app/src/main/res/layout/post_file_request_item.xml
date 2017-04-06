@@ -21,7 +21,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 app:srcCompat="@mipmap/ic_launcher"
-                android:id="@+id/imageView" />
+                android:id="@+id/post_file_request_imageGroup" />
 
             <LinearLayout
                 android:orientation="vertical"
@@ -74,7 +74,7 @@
         android:text="Lorem ipsum dolor sit amet, ne feugait prodesset eos. Nam ut sonet partem, omnes consul vituperatoribus."
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/textView5" />
+        android:id="@+id/post_file_request_text" />
 
     <LinearLayout
         android:orientation="vertical"
@@ -86,7 +86,7 @@
             android:text="File request"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/textView2"
+            android:id="@+id/post_file_request_fileName"
             android:layout_weight="1"
             android:textColor="@color/colorPrimaryDark"
             android:padding="5dp"
@@ -104,7 +104,7 @@
             <Button
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/button3"
+                android:id="@+id/post_file_request_downloadButton"
                 android:layout_weight="1"
                 style="@style/Widget.AppCompat.Button.Borderless.Colored"
                 android:padding="5dp"
@@ -116,7 +116,7 @@
                 android:text="@string/post"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/button_download"
+                android:id="@+id/post_file_request_previewButton"
                 android:layout_weight="1"
                 style="@style/Widget.AppCompat.Button.Borderless.Colored"
                 android:layout_marginLeft="10dp"
@@ -149,7 +149,7 @@
                 android:text="20"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:id="@+id/textView3"
+                android:id="@+id/post_file_request_ups"
                 android:gravity="center_vertical" />
         </LinearLayout>
 
@@ -170,7 +170,7 @@
                 android:text="12"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:id="@+id/textView4"
+                android:id="@+id/post_file_request_downs"
                 android:gravity="center_vertical" />
 
         </LinearLayout>

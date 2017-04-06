@@ -35,9 +35,11 @@
     <string name="post">Post</string>
     <string name="preview">Preview</string>
     <string name="download">Download</string>
-
+    <string name="title_activity_my_messages">MyMessages</string>
     <!-- Group -->
     <string name="post_something">Write a post</string>
+    <!--New Message-->
+    <string name="message">Write your message</string>
     <string name="addPoll">Add a poll</string>
     <string name="comment">Comment ...</string>
     <string name="title_activity_conversation">conversation</string>
