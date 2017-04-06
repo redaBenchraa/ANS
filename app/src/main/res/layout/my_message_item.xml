@@ -27,13 +27,16 @@
                 android:text="TextView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/message_item_fullName" />
+                android:id="@+id/message_item_fullName"
+                android:layout_margin="5dp"
+                android:textColor="@android:color/background_dark" />
 
             <TextView
                 android:text="TextView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/message_item_lastMessage" />
+                android:id="@+id/message_item_lastMessage"
+                android:layout_margin="5dp" />
 
         </LinearLayout>
     </LinearLayout>

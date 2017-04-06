@@ -46,7 +46,7 @@
                             android:layout_width="50dp"
                             android:layout_height="50dp"
                             app:srcCompat="@mipmap/avatar"
-                            android:id="@+id/imageView6" />
+                            android:id="@+id/group_poll_imageGroup" />
 
                         <LinearLayout
                             android:orientation="vertical"
@@ -59,7 +59,7 @@
                                 android:text="Group name"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:id="@+id/textView6"
+                                android:id="@+id/group_poll_groupName"
                                 android:textSize="24sp"
                                 android:textStyle="bold"
                                 android:textColor="?attr/colorControlNormal" />
@@ -89,7 +89,7 @@
                         android:layout_below="@+id/tool_bar"
                         android:layout_centerHorizontal="true"
                         android:layout_marginTop="0dp"
-                        android:id="@+id/editText3"
+                        android:id="@+id/group_poll_writePost"
                         android:hint="@string/post_something" />
 
                     <View android:layout_width="fill_parent" android:layout_height="2dp" android:background="?android:attr/colorButtonNormal"
@@ -117,7 +117,7 @@
                             android:layout_height="wrap_content"
                             android:inputType="textPersonName"
                             android:ems="10"
-                            android:id="@+id/editText4"
+                            android:id="@+id/group_poll_newPoll"
                             android:layout_weight="1"
                             android:hint="@string/addPoll" />
 
@@ -125,7 +125,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             app:srcCompat="@drawable/ic_addtolist"
-                            android:id="@+id/imageButton6" />
+                            android:id="@+id/group_poll_validatePoll" />
 
                     </LinearLayout>
                 </LinearLayout>

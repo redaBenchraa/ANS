@@ -5,7 +5,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="com.example.reda_benchraa.asn.mynotification"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:background="@android:color/background_light">
 
     <include
         android:id="@+id/tool_bar"
@@ -16,6 +17,6 @@
     <ListView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:id="@+id/listView_activity" />
+        android:id="@+id/listView_myNotification" />
 
 </LinearLayout>

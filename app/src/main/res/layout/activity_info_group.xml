@@ -28,29 +28,37 @@
             <ImageView
                 android:layout_width="match_parent"
                 app:srcCompat="@mipmap/ic_launcher"
-                android:id="@+id/imageView2"
+                android:id="@+id/info_group_imageGroup"
                 android:layout_height="125dp" />
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/infGroup_groupName" />
+                android:id="@+id/infoGroup_groupName"
+                android:layout_margin="5dp"
+                android:text="Group name"
+                android:gravity="center_horizontal"
+                android:textSize="24sp" />
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/infoGroup_about" />
+                android:id="@+id/infoGroup_about"
+                android:layout_margin="5dp"
+                android:text="about"
+                android:textColor="@android:color/background_dark" />
 
             <TextView
                 android:text="@string/owner"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/infoGroup_owner" />
+                android:id="@+id/infoGroup_owner"
+                android:layout_margin="5dp" />
 
             <ListView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/infoGroupOwner_listView" />
+                android:id="@+id/listView_infoGroupOwner" />
 
             <TextView
                 android:text="@string/admins"
@@ -61,17 +69,18 @@
             <ListView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/infoGroupAdmins_listView" />
+                android:id="@+id/listView_infoGroupAdmins" />
             <TextView
                 android:text="@string/members"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/textView5" />
+                android:id="@+id/textView5"
+                android:layout_margin="5dp" />
 
             <ListView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/infoGroupMembers_listView" />
+                android:id="@+id/listView_infoGroupMembers" />
         </LinearLayout>
     </LinearLayout>
 </LinearLayout>
