@@ -128,50 +128,28 @@
         android:orientation="horizontal"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/layout_upDown">
+        android:gravity="center">
 
-        <LinearLayout
-            android:orientation="horizontal"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="2"
-            android:gravity="center">
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:srcCompat="@drawable/ic_upactivated"
+            android:id="@+id/imageView" />
 
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                app:srcCompat="@drawable/ic_thumbup_activated"
-                android:id="@+id/imageView4" />
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:srcCompat="@drawable/ic_down"
+            android:id="@+id/imageView7" />
 
-            <TextView
-                android:text="20"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:id="@+id/post_attachment_ups"
-                android:gravity="center_vertical" />
-        </LinearLayout>
+        <TextView
+            android:text="20"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/textView3"
+            android:gravity="center_vertical"
+            android:textColor="@android:color/background_dark" />
 
-        <LinearLayout
-            android:orientation="horizontal"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="2"
-            android:gravity="center">
-
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                app:srcCompat="@drawable/ic_thumdown"
-                android:id="@+id/imageView5" />
-
-            <TextView
-                android:text="12"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:id="@+id/post_attachment_downs"
-                android:gravity="center_vertical" />
-
-        </LinearLayout>
     </LinearLayout>
 
 </LinearLayout>
