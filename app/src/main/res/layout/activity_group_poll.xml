@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_group_poll"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.reda_benchraa.asn.group_poll"
+    android:orientation="vertical"
+    android:weightSum="1"
+    android:scrollbars="vertical">
+        <include
+            android:id="@+id/tool_bar"
+            layout="@layout/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" >
+
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:scrollbars="horizontal|vertical">
+
+                <LinearLayout
+                        android:orientation="horizontal"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:paddingEnd="12dp"
+                        android:paddingLeft="12dp"
+                        android:paddingStart="12dp"
+                        android:paddingRight="12dp"
+                        android:paddingTop="12dp">
+
+                        <ImageView
+                            android:layout_width="50dp"
+                            android:layout_height="50dp"
+                            app:srcCompat="@mipmap/avatar"
+                            android:id="@+id/imageView6" />
+
+                        <LinearLayout
+                            android:orientation="vertical"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:layout_marginLeft="5dp">
+
+                            <TextView
+                                android:text="Group name"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:id="@+id/textView6"
+                                android:textSize="24sp"
+                                android:textStyle="bold"
+                                android:textColor="?attr/colorControlNormal" />
+
+                            <TextView
+                                android:text="about"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:id="@+id/textView7"
+                                android:layout_marginLeft="20dp" />
+
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+                <LinearLayout
+                    android:orientation="vertical"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp">
+
+                    <EditText
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:inputType="textMultiLine"
+                        android:ems="10"
+                        android:layout_below="@+id/tool_bar"
+                        android:layout_centerHorizontal="true"
+                        android:layout_marginTop="0dp"
+                        android:id="@+id/editText3"
+                        android:hint="@string/post_something" />
+
+                    <View android:layout_width="fill_parent" android:layout_height="2dp" android:background="?android:attr/colorButtonNormal"
+                        android:layout_marginBottom="10dp"
+                        android:layout_marginEnd="10dp"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginRight="10dp"
+                        android:layout_marginStart="10dp"
+                        android:layout_marginTop="0dp" />
+
+                    <ListView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:id="@+id/listView_poll" />
+
+                    <LinearLayout
+                        android:orientation="horizontal"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:gravity="center_vertical">
+
+                        <EditText
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:inputType="textPersonName"
+                            android:ems="10"
+                            android:id="@+id/editText4"
+                            android:layout_weight="1"
+                            android:hint="@string/addPoll" />
+
+                        <ImageButton
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            app:srcCompat="@drawable/ic_addtolist"
+                            android:id="@+id/imageButton6" />
+
+                    </LinearLayout>
+                </LinearLayout>
+
+            </LinearLayout>
+
+        </LinearLayout>
+    </ScrollView>
+
+    <ImageButton
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:srcCompat="@drawable/ic_send"
+        android:id="@+id/imageButton4"
+        android:layout_weight="1" />
+
+</LinearLayout>
