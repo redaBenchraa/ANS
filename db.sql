@@ -70,6 +70,7 @@ CREATE TABLE Post(
         File        Blob ,
         Type        Smallint ,
         postingDate Date ,
+        Popularity  Smallint ,
         ID_Group    Int ,
         ID_Account  Int ,
         PRIMARY KEY (ID )
@@ -85,6 +86,7 @@ CREATE TABLE Comment(
         content    Varchar (250) ,
         File       Blob ,
         Type       Smallint ,
+        Popularity Smallint ,
         ID_Account Int ,
         ID_Post    Int ,
         PRIMARY KEY (ID )
@@ -174,6 +176,30 @@ CREATE TABLE Votes(
         PRIMARY KEY (ID ,ID_Poll )
 )ENGINE=InnoDB;
 
+
+#------------------------------------------------------------
+# Table: Reacts
+#------------------------------------------------------------
+
+CREATE TABLE Reacts(
+        Type    Smallint ,
+        ID      Int NOT NULL ,
+        ID_Post Int NOT NULL ,
+        PRIMARY KEY (ID ,ID_Post )
+)ENGINE=InnoDB;
+
+
+#------------------------------------------------------------
+# Table: Reacts_Comment
+#------------------------------------------------------------
+
+CREATE TABLE Reacts_Comment(
+        Type       Smallint ,
+        ID         Int NOT NULL ,
+        ID_Comment Int NOT NULL ,
+        PRIMARY KEY (ID ,ID_Comment )
+)ENGINE=InnoDB;
+
 ALTER TABLE Notification ADD CONSTRAINT FK_Notification_ID_Post FOREIGN KEY (ID_Post) REFERENCES Post(ID);
 ALTER TABLE Notification ADD CONSTRAINT FK_Notification_ID_Account FOREIGN KEY (ID_Account) REFERENCES Account(ID);
 ALTER TABLE Group ADD CONSTRAINT FK_Group_ID_Account FOREIGN KEY (ID_Account) REFERENCES Account(ID);
@@ -194,3 +220,7 @@ ALTER TABLE Participates ADD CONSTRAINT FK_Participates_ID FOREIGN KEY (ID) REFE
 ALTER TABLE Participates ADD CONSTRAINT FK_Participates_ID_Account FOREIGN KEY (ID_Account) REFERENCES Account(ID);
 ALTER TABLE Votes ADD CONSTRAINT FK_Votes_ID FOREIGN KEY (ID) REFERENCES Account(ID);
 ALTER TABLE Votes ADD CONSTRAINT FK_Votes_ID_Poll FOREIGN KEY (ID_Poll) REFERENCES Poll(ID);
+ALTER TABLE Reacts ADD CONSTRAINT FK_Reacts_ID FOREIGN KEY (ID) REFERENCES Account(ID);
+ALTER TABLE Reacts ADD CONSTRAINT FK_Reacts_ID_Post FOREIGN KEY (ID_Post) REFERENCES Post(ID);
+ALTER TABLE Reacts_Comment ADD CONSTRAINT FK_Reacts_Comment_ID FOREIGN KEY (ID) REFERENCES Account(ID);
+ALTER TABLE Reacts_Comment ADD CONSTRAINT FK_Reacts_Comment_ID_Comment FOREIGN KEY (ID_Comment) REFERENCES Comment(ID);
