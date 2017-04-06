@@ -27,7 +27,7 @@
         android:orientation="horizontal"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:gravity="center_vertical">
+        android:gravity="center">
 
         <ImageView
             android:layout_width="wrap_content"
@@ -41,8 +41,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/textView12"
-            android:layout_weight="2"
-            android:textColor="@android:color/background_dark" />
+            android:textColor="@color/colorAccent" />
     </LinearLayout>
 
     <View android:layout_width="fill_parent" android:layout_height="2dp" android:background="?android:attr/colorButtonNormal"/>

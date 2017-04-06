@@ -40,4 +40,5 @@
     <string name="post_something">Write a post</string>
     <string name="addPoll">Add a poll</string>
     <string name="comment">Comment ...</string>
+    <string name="title_activity_conversation">conversation</string>
 </resources>
