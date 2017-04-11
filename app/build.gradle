@@ -29,6 +29,5 @@ dependencies {
     testCompile 'junit:junit:4.12'
     sourceCompatibility = 1.7
     targetCompatibility = 1.7
-    compile project(':mysql-connector-java-3.0.17-ga-bin')
-
+    compile files('/home/reda-benchraa/AndroidStudioProjects/Fourth-Semester-Projects/ASN/Project/libs/gson-2.2.4.jar')
 }
