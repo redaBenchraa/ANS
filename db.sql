@@ -36,16 +36,17 @@ CREATE TABLE Notification(
 
 
 #------------------------------------------------------------
-# Table: Group
+# Table: Grp
 #------------------------------------------------------------
 
-CREATE TABLE Group(
-        ID           int (11) Auto_increment  NOT NULL ,
+CREATE TABLE Grp(
+        IdGroup      int (11) Auto_increment  NOT NULL ,
         Name         Varchar (25) ,
         creationDate Date ,
         about        Varchar (100) ,
-        ID_Account   Int ,
-        PRIMARY KEY (ID )
+        ID           Int ,
+        IdGroup_1    Int ,
+        PRIMARY KEY (IdGroup )
 )ENGINE=InnoDB;
 
 
@@ -71,7 +72,7 @@ CREATE TABLE Post(
         Type        Smallint ,
         postingDate Date ,
         Popularity  Smallint ,
-        ID_Group    Int ,
+        IdGroup     Int ,
         ID_Account  Int ,
         PRIMARY KEY (ID )
 )ENGINE=InnoDB;
@@ -138,9 +139,9 @@ CREATE TABLE messageNotification(
 #------------------------------------------------------------
 
 CREATE TABLE Admin(
-        ID       Int NOT NULL ,
-        ID_Group Int NOT NULL ,
-        PRIMARY KEY (ID ,ID_Group )
+        ID      Int NOT NULL ,
+        IdGroup Int NOT NULL ,
+        PRIMARY KEY (ID ,IdGroup )
 )ENGINE=InnoDB;
 
 
@@ -149,9 +150,9 @@ CREATE TABLE Admin(
 #------------------------------------------------------------
 
 CREATE TABLE Member(
-        ID       Int NOT NULL ,
-        ID_Group Int NOT NULL ,
-        PRIMARY KEY (ID ,ID_Group )
+        ID      Int NOT NULL ,
+        IdGroup Int NOT NULL ,
+        PRIMARY KEY (ID ,IdGroup )
 )ENGINE=InnoDB;
 
 
@@ -202,8 +203,9 @@ CREATE TABLE Reacts_Comment(
 
 ALTER TABLE Notification ADD CONSTRAINT FK_Notification_ID_Post FOREIGN KEY (ID_Post) REFERENCES Post(ID);
 ALTER TABLE Notification ADD CONSTRAINT FK_Notification_ID_Account FOREIGN KEY (ID_Account) REFERENCES Account(ID);
-ALTER TABLE Group ADD CONSTRAINT FK_Group_ID_Account FOREIGN KEY (ID_Account) REFERENCES Account(ID);
-ALTER TABLE Post ADD CONSTRAINT FK_Post_ID_Group FOREIGN KEY (ID_Group) REFERENCES Group(ID);
+ALTER TABLE Grp ADD CONSTRAINT FK_Grp_ID FOREIGN KEY (ID) REFERENCES Account(ID);
+ALTER TABLE Grp ADD CONSTRAINT FK_Grp_IdGroup_1 FOREIGN KEY (IdGroup_1) REFERENCES Grp(IdGroup);
+ALTER TABLE Post ADD CONSTRAINT FK_Post_IdGroup FOREIGN KEY (IdGroup) REFERENCES Grp(IdGroup);
 ALTER TABLE Post ADD CONSTRAINT FK_Post_ID_Account FOREIGN KEY (ID_Account) REFERENCES Account(ID);
 ALTER TABLE Comment ADD CONSTRAINT FK_Comment_ID_Account FOREIGN KEY (ID_Account) REFERENCES Account(ID);
 ALTER TABLE Comment ADD CONSTRAINT FK_Comment_ID_Post FOREIGN KEY (ID_Post) REFERENCES Post(ID);
@@ -213,9 +215,9 @@ ALTER TABLE Message ADD CONSTRAINT FK_Message_ID_Account FOREIGN KEY (ID_Account
 ALTER TABLE messageNotification ADD CONSTRAINT FK_messageNotification_ID_Account FOREIGN KEY (ID_Account) REFERENCES Account(ID);
 ALTER TABLE messageNotification ADD CONSTRAINT FK_messageNotification_ID_Message FOREIGN KEY (ID_Message) REFERENCES Message(ID);
 ALTER TABLE Admin ADD CONSTRAINT FK_Admin_ID FOREIGN KEY (ID) REFERENCES Account(ID);
-ALTER TABLE Admin ADD CONSTRAINT FK_Admin_ID_Group FOREIGN KEY (ID_Group) REFERENCES Group(ID);
+ALTER TABLE Admin ADD CONSTRAINT FK_Admin_IdGroup FOREIGN KEY (IdGroup) REFERENCES Grp(IdGroup);
 ALTER TABLE Member ADD CONSTRAINT FK_Member_ID FOREIGN KEY (ID) REFERENCES Account(ID);
-ALTER TABLE Member ADD CONSTRAINT FK_Member_ID_Group FOREIGN KEY (ID_Group) REFERENCES Group(ID);
+ALTER TABLE Member ADD CONSTRAINT FK_Member_IdGroup FOREIGN KEY (IdGroup) REFERENCES Grp(IdGroup);
 ALTER TABLE Participates ADD CONSTRAINT FK_Participates_ID FOREIGN KEY (ID) REFERENCES Conversation(ID);
 ALTER TABLE Participates ADD CONSTRAINT FK_Participates_ID_Account FOREIGN KEY (ID_Account) REFERENCES Account(ID);
 ALTER TABLE Votes ADD CONSTRAINT FK_Votes_ID FOREIGN KEY (ID) REFERENCES Account(ID);
