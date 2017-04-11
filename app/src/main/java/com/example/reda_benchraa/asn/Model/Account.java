@@ -23,18 +23,12 @@ public class Account {
     Blob profilePicture;
     String email;
     boolean showEmail;
-<<<<<<< HEAD
     float xCoordinate;
     float yCoordinate;
     LinkedList<Group> groups;
-    LinkedList<Group> createdGroups;
-    LinkedList<Conversation> conversations;
-    LinkedList<Notification> notifications;
-=======
     LinkedList<Group> createdGroups =new LinkedList<>();
     LinkedList<Conversation> conversations = new LinkedList<>();
     LinkedList<Notification> notifications = new LinkedList<>();
->>>>>>> master
 
     public Account() {
         groups = new LinkedList<>();
