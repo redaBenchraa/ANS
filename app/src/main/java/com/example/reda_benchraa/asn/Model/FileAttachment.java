@@ -8,4 +8,15 @@ import java.io.File;
 
 public class FileAttachment {
     File file;
+
+    public FileAttachment() {
+    }
+
+    public File getFile() {
+        return file;
+    }
+
+    public void setFile(File file) {
+        this.file = file;
+    }
 }

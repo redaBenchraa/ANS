@@ -7,4 +7,14 @@ package com.example.reda_benchraa.asn.Model;
 public class Message {
     Conversation conversation; // Isn't this recursive ?
 
+    public Message() {
+    }
+
+    public Conversation getConversation() {
+        return conversation;
+    }
+
+    public void setConversation(Conversation conversation) {
+        this.conversation = conversation;
+    }
 }

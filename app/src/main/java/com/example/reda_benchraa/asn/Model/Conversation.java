@@ -7,7 +7,25 @@ import java.util.LinkedList;
  */
 
 public class Conversation {
-    LinkedList<Account> participants;
-    LinkedList<Message> messages;
+    LinkedList<Account> participants = new LinkedList<>();
+    LinkedList<Message> messages = new LinkedList<>();
 
+    public Conversation() {
+    }
+
+    public LinkedList<Account> getParticipants() {
+        return participants;
+    }
+
+    public void setParticipants(LinkedList<Account> participants) {
+        this.participants = participants;
+    }
+
+    public LinkedList<Message> getMessages() {
+        return messages;
+    }
+
+    public void setMessages(LinkedList<Message> messages) {
+        this.messages = messages;
+    }
 }

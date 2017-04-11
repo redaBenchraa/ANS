@@ -8,11 +8,21 @@ import java.util.LinkedList;
  */
 
 public class FileRequest {
-    LinkedList<SubmitedFile> submittedFiles;
+    LinkedList<SubmitedFile> submittedFiles = new LinkedList<>();
 
     class SubmitedFile {
         Account account;
         File file;
     }
 
+    public FileRequest() {
+    }
+
+    public LinkedList<SubmitedFile> getSubmittedFiles() {
+        return submittedFiles;
+    }
+
+    public void setSubmittedFiles(LinkedList<SubmitedFile> submittedFiles) {
+        this.submittedFiles = submittedFiles;
+    }
 }
