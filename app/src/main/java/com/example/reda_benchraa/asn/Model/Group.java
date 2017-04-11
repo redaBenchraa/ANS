@@ -15,11 +15,11 @@ public class Group {
     Date creationDate;
     Blob groupPicture;
     String about;
-    LinkedList<Account> admins;
-    LinkedList<Account> members;
-    LinkedList<Account> notifiedAccounts;// why this?
-    LinkedList<Post> posts;
-    LinkedList<Group> subGroups;
+    LinkedList<Account> admins = new LinkedList<>();
+    LinkedList<Account> members = new LinkedList<>();
+    LinkedList<Account> notifiedAccounts = new LinkedList<>();// why this?
+    LinkedList<Post> posts = new LinkedList<>();
+    LinkedList<Group> subGroups = new LinkedList<>();
     Group superGroup;
     PublishingSettings publishingSettings;
     enum PublishingSettings { ADMINS_ONLY, ALL_MEMBERS }

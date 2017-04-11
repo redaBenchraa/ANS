@@ -15,9 +15,9 @@ public class Account {
     Blob profilePicture;
     String email;
     boolean showEmail;
-    LinkedList<Group> createdGroups;
-    LinkedList<Conversation> conversations;
-    LinkedList<Notification> notifications;
+    LinkedList<Group> createdGroups =new LinkedList<>();
+    LinkedList<Conversation> conversations = new LinkedList<>();
+    LinkedList<Notification> notifications = new LinkedList<>();
 
     public Account() {
     }
