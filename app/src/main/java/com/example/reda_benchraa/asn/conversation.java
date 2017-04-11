@@ -1,6 +1,10 @@
 package com.example.reda_benchraa.asn;
 
+<<<<<<< HEAD
 import android.os.AsyncTask;
+=======
+import android.os.StrictMode;
+>>>>>>> master
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
@@ -8,6 +12,7 @@ import android.util.Log;
 import android.view.Menu;
 import android.widget.Toast;
 
+import com.example.reda_benchraa.asn.dataAccess.AccountDA;
 import com.mysql.jdbc.Connection;
 
 import java.sql.DriverManager;
@@ -21,8 +26,17 @@ public class conversation extends AppCompatActivity {
         setContentView(R.layout.activity_conversation);
         toolbar = (Toolbar) findViewById(R.id.tool_bar);
         setSupportActionBar(toolbar);
+<<<<<<< HEAD
         testCnx();
     }
+=======
+        if (android.os.Build.VERSION.SDK_INT > 9) {
+            StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
+            StrictMode.setThreadPolicy(policy);
+        }
+    }
+
+>>>>>>> master
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu_login, menu);
