@@ -59,9 +59,11 @@ public class Group {
 
         group.id = object.getInt("id");
         group.name = object.getString("Name");
-        group.image = (byte[]) object.get("Image");
+        if(!object.isNull("Image")){
+            group.image = (byte[]) object.get("Image");
+        }
         group.about = object.getString("About");
-        group.creationDate = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").parse(object.getString("CreationDate"));
+        group.creationDate = new SimpleDateFormat("yyyy-MM-dd").parse(object.getString("createdDate"));
 
 
         // includes as mentioned in the api doc
