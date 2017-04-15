@@ -1,5 +1,11 @@
 package com.example.reda_benchraa.asn.Model;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 /**
@@ -8,11 +14,47 @@ import java.util.Date;
 
 public class Notification {
     long id;
-    long postId;
-    String text;
+    String content;
     Date date;
     boolean seen;
+    Account receiver;
+    Post post;
+
+//    long postId;
+//    String text;
+//    Date date;
+//    boolean seen;
     // Link to where the notification leads
+
+
+
+    public static Notification mapJson(JSONObject object) throws JSONException, ParseException {
+        Notification notification = new Notification();
+
+        // attributes(
+
+        notification.id = object.getInt("id");
+        notification.content = object.getString("Content");
+        notification.date = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").parse(object.getString("dateAndTime"));
+        notification.seen = object.getBoolean("Seen");
+
+
+        // includes
+
+
+        if(object.has("post")){
+            JSONObject postObject = object.getJSONObject("post");
+            notification.post = Post.mapJson(postObject);
+        }
+        if(object.has("receiver")){
+            JSONObject receiverObject = object.getJSONObject("receiver");
+            notification.receiver = Account.mapJson(receiverObject);
+        }
+
+
+        return notification;
+    }
+
 
     public Notification() {
     }
@@ -23,22 +65,6 @@ public class Notification {
 
     public void setId(long id) {
         this.id = id;
-    }
-
-    public long getPostId() {
-        return postId;
-    }
-
-    public void setPostId(long postId) {
-        this.postId = postId;
-    }
-
-    public String getText() {
-        return text;
-    }
-
-    public void setText(String text) {
-        this.text = text;
     }
 
     public Date getDate() {

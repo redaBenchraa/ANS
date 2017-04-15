@@ -19,46 +19,130 @@ public class Account {
     long id;
     String firstName;
     String lastName;
-    String about;
-    Blob profilePicture;
     String email;
+    String about;
+    byte[] profilePicture;
     boolean showEmail;
     float xCoordinate;
     float yCoordinate;
-    LinkedList<Group> groups;
+
+    LinkedList<Group> groups = new LinkedList<>();
+    LinkedList<Group> administratedGroups = new LinkedList<>();
+    LinkedList<Group> myGroups = new LinkedList<>();
     LinkedList<Group> createdGroups =new LinkedList<>();
     LinkedList<Conversation> conversations = new LinkedList<>();
-    LinkedList<Notification> notifications = new LinkedList<>();
 
+    // TODO this is wrong conceptually; the account should have conversations and not sentMessages
+    // Messages should be only accessible from within a conversation
+
+    LinkedList<Message> sentMessages = new LinkedList<>();
+    LinkedList<Post> posts = new LinkedList<>();
+    LinkedList<Notification> notifications = new LinkedList<>();
+    LinkedList<MessageNotification> messageNotifications = new LinkedList<>();
+    LinkedList<Long> voteInPoll = new LinkedList<>();
     public Account() {
-        groups = new LinkedList<>();
-        createdGroups = new LinkedList<>();
-        conversations = new LinkedList<>();
-        notifications = new LinkedList<>();
+
     }
+
     public static Account mapJson(JSONObject object) throws JSONException, ParseException {
         Account account = new Account();
-        account.id = Integer.parseInt(object.getString("id"));
+
+        //attributes
+
+        account.id = object.getLong("id");
         account.firstName = object.getString("firstName");
         account.lastName  = object.getString("lastName");
         account.about  = object.getString("About");
         account.email  = object.getString("Email");
-//        account.showEmail  = (Integer.parseInt(object.getString("Email")) != 0);
+        account.profilePicture = (byte[]) object.get("Image");
+        account.showEmail  = object.getBoolean("showEmail");
         account.xCoordinate  = Float.parseFloat(object.getString("xCoordinate"));
         account.yCoordinate  = Float.parseFloat(object.getString("yCoordinate"));
+
+
+        // includes
+
         if(object.has("groups")){
-            JSONArray groupArray = object.getJSONArray("groups");
-            for (int i=0;i<groupArray.length();i++){
-                JSONObject groupObject = (JSONObject) groupArray.get(i);
-                // You can replace this with a better group mapper from the group model in the future
-                Group group = new Group();
-                group.id = Integer.parseInt(groupObject.getString("id"));
-                group.name = groupObject.getString("Name");
-                group.about = groupObject.getString("About");
-              //  group.creationDate =  new SimpleDateFormat("yyyy/MM/dd").parse(groupObject.getString("createdDate"));
-                account.groups.add(group);
+            JSONArray groupsArray = object.getJSONArray("groups");
+            for (int i=0;i<groupsArray.length();i++){
+                JSONObject groupObject = (JSONObject) groupsArray.get(i);
+                Group group = Group.mapJson(groupObject);
+                account.groups.addLast(group);
             }
         }
+        if(object.has("notifications")){
+            JSONArray notificationsArray = object.getJSONArray("notifications");
+            for (int i=0;i<notificationsArray.length();i++){
+                JSONObject notificationObject = (JSONObject) notificationsArray.get(i);
+                Notification notification = Notification.mapJson(notificationObject);
+                account.notifications.addLast(notification);
+            }
+        }
+        if(object.has("messageNotifications")){
+            JSONArray messageNotificationsArray = object.getJSONArray("messageNotifications");
+            for (int i=0;i<messageNotificationsArray.length();i++){
+                JSONObject messageNotificationObject = (JSONObject) messageNotificationsArray.get(i);
+                MessageNotification messageNotification = MessageNotification.mapJson(messageNotificationObject);
+                account.messageNotifications.addLast(messageNotification);
+            }
+        }
+        if(object.has("conversations")){
+            JSONArray conversationsArray = object.getJSONArray("conversations");
+            for (int i=0;i<conversationsArray.length();i++){
+                JSONObject conversationObject = (JSONObject) conversationsArray.get(i);
+                Conversation conversation = Conversation.mapJson(conversationObject);
+                account.conversations.addLast(conversation);
+            }
+        }
+
+        if(object.has("sentMessages")){
+            JSONArray sentMessagesArray = object.getJSONArray("sentMessages");
+            for (int i=0;i<sentMessagesArray.length();i++){
+                JSONObject messageObject = (JSONObject) sentMessagesArray.get(i);
+                Message message = Message.mapJson(messageObject);
+                account.sentMessages.addLast(message);
+            }
+        }
+        if(object.has("posts")){
+            JSONArray postsArray = object.getJSONArray("posts");
+            for (int i=0;i<postsArray.length();i++){
+                JSONObject postObject = (JSONObject) postsArray.get(i);
+                Post post = Post.mapJson(postObject);
+                account.posts.addLast(post);
+            }
+        }
+        if(object.has("groups")){
+            JSONArray groupsArray = object.getJSONArray("groups");
+            for (int i=0;i<groupsArray.length();i++){
+                JSONObject groupObject = (JSONObject) groupsArray.get(i);
+                Group group = Group.mapJson(groupObject);
+                account.groups.addLast(group);
+            }
+        }
+        if(object.has("administratedGroups")){
+            JSONArray groupsArray = object.getJSONArray("administratedGroups");
+            for (int i=0;i<groupsArray.length();i++){
+                JSONObject groupObject = (JSONObject) groupsArray.get(i);
+                Group group = Group.mapJson(groupObject);
+                account.administratedGroups.addLast(group);
+            }
+        }
+        if(object.has("createdGroups")){
+            JSONArray groupsArray = object.getJSONArray("createdGroups");
+            for (int i=0;i<groupsArray.length();i++){
+                JSONObject groupObject = (JSONObject) groupsArray.get(i);
+                Group group = Group.mapJson(groupObject);
+                account.createdGroups.addLast(group);
+            }
+        }
+
+
+
+
+        // TODO what is a reaction ?
+        // TODO why voteInPoll has an array of integers instead of JSONObjects ?
+
+
         return account;
     }
     public LinkedList<Group> getGroups() {
@@ -114,14 +198,6 @@ public class Account {
 
     public void setAbout(String about) {
         this.about = about;
-    }
-
-    public Blob getProfilePicture() {
-        return profilePicture;
-    }
-
-    public void setProfilePicture(Blob profilePicture) {
-        this.profilePicture = profilePicture;
     }
 
     public String getEmail() {
