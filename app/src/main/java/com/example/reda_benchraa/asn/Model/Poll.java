@@ -32,6 +32,7 @@ public class Poll {
     int vote;
     long post_id;
 
+    LinkedList<Long> voters_id = new LinkedList<>();
 
     public static Poll mapJson(JSONObject object) throws JSONException, ParseException {
         Poll poll = new Poll();
@@ -44,7 +45,16 @@ public class Poll {
         poll.post_id = object.getLong("Post");
 
 
-        // TODO fix includes in the webservice because they give an ErorException in PollService.php line 50
+        // TODO fix "include=posts" gives an ErorException in PollService.php line 50
+
+        // includes
+        if(object.has("voters")){
+            // TODO shouldn't a vote be { account_id, poll_id, chosen_option_id } ?
+            JSONArray votersArray = object.getJSONArray("voters");
+            for (int i=0;i<votersArray.length();i++){
+                poll.voters_id.add(((JSONObject) votersArray.get(i)).getLong("account"));
+            }
+        }
 
         return poll;
     }

@@ -25,8 +25,6 @@ public class Comment {
     int post_id;
 
 
-
-    //    TODO what is a reaction ?
     LinkedList<Reaction> reactions = new LinkedList<>();
 
 
@@ -44,8 +42,8 @@ public class Comment {
         comment.account_id = object.getInt("Account");
         comment.post_id = object.getInt("Post");
 
-        // TODO fix attributes because they are not woking in the webservice
-
+        // TODO fix includes because they are not woking in the webservice
+        // ErrorException in CommentService.php line 72:
         return comment;
     }
     public Comment() {

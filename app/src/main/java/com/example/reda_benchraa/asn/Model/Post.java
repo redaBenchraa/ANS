@@ -40,7 +40,6 @@ public class Post {
     Account account;
 
 
-//    TODO what is a reaction ?
     LinkedList<Reaction> reactions = new LinkedList<>();
 
 
@@ -87,6 +86,7 @@ public class Post {
             post.account = Account.mapJson(accountObject);
         }
         if(object.has("reactions")){
+            // TODO should the reaction JSONObject have post_id or comment_id ?
             JSONArray reactionsArray = object.getJSONArray("reactions");
             for (int i=0;i<reactionsArray.length();i++){
                 JSONObject reactionObject = (JSONObject) reactionsArray.get(i);

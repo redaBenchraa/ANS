@@ -1,5 +1,6 @@
 package com.example.reda_benchraa.asn.Model;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -13,14 +14,15 @@ import java.util.LinkedList;
 
 public class Conversation {
 
-    // TODO fix webserivce, the include "containAccount" and "containMessage" do not work
     // TODO also, last_message shouldn't be String, instead it should be JSONObject : {Message
     // TODO so that it will be parsed using Message.mapJson(message);
-
-    // TODO it should have a json Array containing all the messages
+    // {"id":1,"lastMessage":"velit","href":"http:\/\/127.0.0.1:8000\/api\/v1\/Conversations\/1"}
 
     long id;
     String lastMessage;
+
+    LinkedList<Message> messages = new LinkedList<>();
+    LinkedList<Account> accounts = new LinkedList<>();
 
 
     public static Conversation mapJson(JSONObject object) throws JSONException, ParseException {
@@ -33,7 +35,23 @@ public class Conversation {
 
 
         // includes
-        // TODO fix the includes, more info above
+        if(object.has("messages")){
+            JSONArray messagesArray = object.getJSONArray("messages");
+            for (int i=0;i<messagesArray.length();i++){
+                JSONObject messageObject = (JSONObject) messagesArray.get(i);
+                Message message = Message.mapJson(messageObject);
+                conversation.messages.add(message);
+            }
+        }
+        if(object.has("accounts")){
+            JSONArray accountsArray = object.getJSONArray("accounts");
+            for (int i=0;i<accountsArray.length();i++){
+                JSONObject accountObject = (JSONObject) accountsArray.get(i);
+                Account account = Account.mapJson(accountObject);
+                conversation.accounts.add(account);
+            }
+        }
+
 
 
         return conversation;
