@@ -54,8 +54,10 @@ public class Account {
         account.lastName  = object.getString("lastName");
         account.about  = object.getString("About");
         account.email  = object.getString("Email");
-        account.profilePicture = (byte[]) object.get("Image");
-        account.showEmail  = object.getBoolean("showEmail");
+        if(!object.isNull("Image")){
+            account.profilePicture = (byte[]) object.get("Image");
+        }
+        account.showEmail  = (object.getInt("showEmail") != 0 );
         account.xCoordinate  = Float.parseFloat(object.getString("xCoordinate"));
         account.yCoordinate  = Float.parseFloat(object.getString("yCoordinate"));
 

@@ -46,12 +46,18 @@ public class Group {
     Account owner;
 
 
-    // TODO superGroup column is missing from the database
+    // TODO superGroup column is missing from the JSONObject
     Group superGroup;
 
-    // TODO "subs" include mentioned in the doc doesn't exists in the webservice nor in the database
+    // TODO "subs" include is NOT showing in the JSONObject, check example:
+    // TODO super missing from JSONObject
+    //http://127.0.0.1:8000/api/v1/Groups/1?include=super,subs
+    //[{"id":1,"Name":"Miss Caleigh Heathcote PhD","Image":null,"About":"vero","CreationDate":"2012-04-06","href":"http:\/\/127.0.0.1:8000\/api\/v1\/Groups\/1"}]
 
+    // TODO is subs = subgroups ? why then the subs JSONObject doesn't have same structure as a group ? (it has Accout_id and Grp_id)
+    // shown in the photo on the report
 
+    // TODO in attribute it should have Grp_super_id = "1" and Grp_super = {Group} (both of them are missing)
     public static Group mapJson(JSONObject object) throws JSONException, ParseException {
         Group group = new Group();
 
@@ -59,9 +65,11 @@ public class Group {
 
         group.id = object.getInt("id");
         group.name = object.getString("Name");
-        group.image = (byte[]) object.get("Image");
+        if(!object.isNull("Image")){
+            group.image = (byte[]) object.get("Image");
+        }
         group.about = object.getString("About");
-        group.creationDate = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").parse(object.getString("CreationDate"));
+        group.creationDate = new SimpleDateFormat("yyyy-MM-dd").parse(object.getString("createdDate"));
 
 
         // includes as mentioned in the api doc

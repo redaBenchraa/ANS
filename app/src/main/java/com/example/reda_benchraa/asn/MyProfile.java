@@ -7,6 +7,8 @@ import android.util.Log;
 import android.view.Menu;
 import android.widget.EditText;
 import android.widget.Toast;
+import android.widget.ToggleButton;
+
 import com.example.reda_benchraa.asn.DAO.JsonFetcher;
 import com.example.reda_benchraa.asn.DAO.Utility;
 import com.example.reda_benchraa.asn.Model.Account;
@@ -20,12 +22,14 @@ public class MyProfile extends AppCompatActivity implements JsonFetcher.Listener
     EditText firstNameEt;
     EditText lastNameEt;
     EditText emailEt;
+    ToggleButton hideEmaile;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_my_profile);
         toolbar = (Toolbar) findViewById(R.id.tool_bar);
         setSupportActionBar(toolbar);
+        hideEmaile = (ToggleButton) findViewById(R.id.myProfile_hideEmail);
         firstNameEt = (EditText) findViewById(R.id.myProfile_firstName);
         lastNameEt = (EditText) findViewById(R.id.myProfile_lastName);
         emailEt = (EditText) findViewById(R.id.myProfile_email);
@@ -52,6 +56,7 @@ public class MyProfile extends AppCompatActivity implements JsonFetcher.Listener
                 firstNameEt.setText(account.getFirstName());
                 lastNameEt.setText(account.getLastName());
                 emailEt.setText(account.getEmail());
+                hideEmaile.setChecked(!account.isShowEmail());
                 // ... ect
                 // test groups
                 for (Group group : account.getGroups()) {

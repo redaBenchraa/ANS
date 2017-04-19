@@ -33,7 +33,10 @@ public class Message {
 
         message.id = object.getLong("id");
         message.content = object.getString("Content");
-        // TODO why date is returned as an object in json ? in Posts it is returned as a string
+        // TODO low priority: unify date returns
+        // Unify date returns so it has one structure, either string or object. (Also how will timezones be handled ?
+        // Also return utc and show it based on local timezone ?)
+
         message.date = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").parse(object.getJSONObject("date").getString("date"));
         message.account_id = object.getLong("account");
         message.conversation_id = object.getLong("conversation");
