@@ -6,7 +6,6 @@ import android.os.AsyncTask;
 import android.util.Log;
 
 import com.example.reda_benchraa.asn.Model.Account;
-import com.google.gson.JsonSyntaxException;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -27,9 +26,6 @@ public class JsonFetcher extends AsyncTask<String, Void, String> {
         try {
             return loadJSON(strings[0]);
         } catch (IOException e) {
-            e.printStackTrace();
-            return null;
-        } catch (JsonSyntaxException e) {
             e.printStackTrace();
             return null;
         }
