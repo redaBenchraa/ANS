@@ -3,6 +3,9 @@ package com.example.reda_benchraa.asn.DAO;
  * Created by reda-benchraa on 11/04/17.
  */
 import android.os.AsyncTask;
+import android.util.Log;
+
+import com.example.reda_benchraa.asn.Model.Account;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
