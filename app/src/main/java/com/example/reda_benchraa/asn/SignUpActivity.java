@@ -1,6 +1,7 @@
 package com.example.reda_benchraa.asn;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -17,6 +18,8 @@ import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.reda_benchraa.asn.DAO.Utility;
 import com.example.reda_benchraa.asn.Model.Account;
+import com.google.gson.Gson;
+
 import org.json.JSONException;
 import org.json.JSONObject;
 import java.text.ParseException;
@@ -29,14 +32,13 @@ public class SignUpActivity extends AppCompatActivity{
     Button signup;
     Context context;
     static Account account;
-    SharedPreferences mSettings;
-    SharedPreferences.Editor mEditor;
+    static SharedPreferences sharedpreferences;
+    public static final String MyPREFERENCES = "Account" ;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_up);
-        mSettings = getSharedPreferences("Account", Context.MODE_PRIVATE);
-        mEditor = mSettings.edit();
+        sharedpreferences = getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
         context = this;
         fname = (EditText) findViewById(R.id.signIn_firstName);
         lname = (EditText) findViewById(R.id.signIn_lastName);
@@ -71,6 +73,13 @@ public class SignUpActivity extends AppCompatActivity{
             public void onResponse(String response) {
                 try {
                     account = Account.mapJson(new JSONObject(response));
+                    SharedPreferences.Editor editor = sharedpreferences.edit();
+                    Gson gson = new Gson();
+                    String json = gson.toJson(account);
+                    editor.putString("myAccount", json);
+                    editor.apply();
+                    Intent intent = new Intent(context,MyProfile.class);
+                    context.startActivity(intent);
                 } catch (JSONException | ParseException e) {
                     e.printStackTrace();
                 }
