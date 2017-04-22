@@ -8,6 +8,8 @@ import android.content.res.AssetManager;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Properties;
 
 public class Utility {
@@ -23,5 +25,10 @@ public class Utility {
             return "ERROR/";
         }
         return properties.getProperty(key);
+    }
+    public static Map getMap(){
+        Map<String,String> params = new HashMap<String, String>();
+        params.put("Content-Type","application/x-www-form-urlencoded");
+        return params;
     }
 }
