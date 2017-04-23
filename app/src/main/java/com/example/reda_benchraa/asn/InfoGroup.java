@@ -1,5 +1,6 @@
 package com.example.reda_benchraa.asn;
 
+import android.content.Context;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
@@ -13,15 +14,23 @@ import java.util.Map;
 
 public class InfoGroup extends AppCompatActivity {
     private Toolbar toolbar;
-    ImageView groupImage;
-    TextView groupName,about;
+    ImageView image;
+    TextView name,about;
     ListView owner,admins,members;
+    Context context;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_info_group);
         toolbar = (Toolbar) findViewById(R.id.tool_bar);
         setSupportActionBar(toolbar);
+        context = this;
+        image = (ImageView) findViewById(R.id.info_group_imageGroup);
+        name = (TextView) findViewById(R.id.infoGroup_groupName);
+        about = (TextView) findViewById(R.id.infoGroup_about);
+        owner = (ListView) findViewById(R.id.listView_infoGroupOwner);
+        admins = (ListView) findViewById(R.id.listView_infoGroupAdmins);
+        members = (ListView) findViewById(R.id.listView_infoGroupMembers);
 
 
     }
