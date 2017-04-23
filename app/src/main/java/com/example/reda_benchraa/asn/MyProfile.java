@@ -15,6 +15,7 @@ import android.support.v7.widget.Toolbar;
 import android.util.Base64;
 import android.util.Log;
 import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -79,6 +80,7 @@ public class MyProfile extends AppCompatActivity {
         submit = (Button) findViewById(R.id.myProfile_save);
         image = (ImageView) findViewById(R.id.myProfile_image);
         aboutTv = (EditText) findViewById(R.id.myProfile_about);
+        nameTv.setText(getResources().getString(R.string.myProfile));
         Gson gson = new Gson();
         String json = sharedpreferences.getString("myAccount", "");
         account = gson.fromJson(json, Account.class);
@@ -89,7 +91,6 @@ public class MyProfile extends AppCompatActivity {
             hideEmail.setChecked(account.isShowEmail());
             image.setImageBitmap(BitmapFactory.decodeByteArray(account.getProfilePicture(),0,account.getProfilePicture().length));
             aboutTv.setText(account.getAbout());
-            nameTv.setText(account.getFirstName() + " " + account.getLastName());
         } catch (Exception e) {
             startActivity(new Intent(getApplicationContext(), login.class));
         }
@@ -157,6 +158,34 @@ public class MyProfile extends AppCompatActivity {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_login, menu);
         return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // Handle action bar item clicks here. The action bar will
+        // automatically handle clicks on the Home/Up button, so long
+        // as you specify a parent activity in AndroidManifest.xml.
+        int id = item.getItemId();
+
+        //noinspection SimplifiableIfStatement
+        switch (id){
+            case R.id.action_home:startActivity(new Intent(getApplicationContext(),home.class));break;
+            case R.id.action_myProfile:startActivity(new Intent(getApplicationContext(),MyProfile.class));break;
+            case R.id.action_myGroups:startActivity(new Intent(getApplicationContext(),MyGroups.class));break;
+            case R.id.action_myMessages:startActivity(new Intent(getApplicationContext(),MyMessages.class));break;
+            case R.id.action_myNotifications:startActivity(new Intent(getApplicationContext(),mynotification.class));break;
+            case R.id.action_myContacts:startActivity(new Intent(getApplicationContext(),Contacts.class));break;
+            case R.id.action_settings:startActivity(new Intent(getApplicationContext(),MyProfile.class));break;
+            case R.id.action_help:startActivity(new Intent(getApplicationContext(),MyProfile.class));break;
+            case R.id.action_signout:
+                SharedPreferences prefs = getSharedPreferences("PREFERENCE", MODE_PRIVATE);
+                SharedPreferences.Editor editor = prefs.edit();
+                editor.clear();
+                editor.apply();
+                startActivity(new Intent(getApplicationContext(),login.class));
+                break;
+        }
+        return super.onOptionsItemSelected(item);
     }
     public static void updateAccount(final Context context, final Map map, final String url){
         RequestQueue queue = Volley.newRequestQueue(context);

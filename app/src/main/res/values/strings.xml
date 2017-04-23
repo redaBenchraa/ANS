@@ -19,11 +19,12 @@
     <string name="hide">Hide</string>
     <string name="title_activity_profile">Profile</string>
     <!-- Toolbar -->
-    <string name="myProfile">MY PROFILE</string>
-    <string name="myGroups">MY GROUPS</string>
-    <string name="myMessages">MY MESSAGES</string>
-    <string name="myNotifications">MY NOTIFICATIONS</string>
-    <string name="myContacts">MY CONTACTS</string>
+    <string name="home">Home</string>
+    <string name="myProfile">PROFILE</string>
+    <string name="myGroups">GROUPS</string>
+    <string name="myMessages">MESSAGES</string>
+    <string name="myNotifications">NOTIFICATIONS</string>
+    <string name="myContacts">CONTACTS</string>
     <string name="settings">SETTINGS</string>
     <string name="help">HELP</string>
     <string name="signout">SIGN OUT</string>
