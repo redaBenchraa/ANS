@@ -1,8 +1,11 @@
 package com.example.reda_benchraa.asn;
 
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 
@@ -30,10 +33,23 @@ public class home extends AppCompatActivity {
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
+        switch (id){
+            case R.id.action_home:startActivity(new Intent(getApplicationContext(),home.class));break;
+            case R.id.action_myProfile:startActivity(new Intent(getApplicationContext(),MyProfile.class));break;
+            case R.id.action_myGroups:startActivity(new Intent(getApplicationContext(),MyGroups.class));break;
+            case R.id.action_myMessages:startActivity(new Intent(getApplicationContext(),MyMessages.class));break;
+            case R.id.action_myNotifications:startActivity(new Intent(getApplicationContext(),mynotification.class));break;
+            case R.id.action_myContacts:startActivity(new Intent(getApplicationContext(),Contacts.class));break;
+            case R.id.action_settings:startActivity(new Intent(getApplicationContext(),MyProfile.class));break;
+            case R.id.action_help:startActivity(new Intent(getApplicationContext(),MyProfile.class));break;
+            case R.id.action_signout:
+                SharedPreferences prefs = getSharedPreferences("PREFERENCE", MODE_PRIVATE);
+                SharedPreferences.Editor editor = prefs.edit();
+                editor.clear();
+                editor.apply();
+                startActivity(new Intent(getApplicationContext(),login.class));
+                break;
         }
-
         return super.onOptionsItemSelected(item);
     }
 }
