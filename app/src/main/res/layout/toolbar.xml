@@ -20,12 +20,12 @@
             android:layout_margin="0dp" />
 
         <TextView
-            android:text="TextView"
+            android:id="@+id/name"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:id="@+id/textView"
             android:layout_weight="0"
             android:gravity="center"
+            android:text="TextView"
             android:textColor="@android:color/background_light" />
 
         <LinearLayout

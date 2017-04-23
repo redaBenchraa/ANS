@@ -1,5 +1,6 @@
 package com.example.reda_benchraa.asn.Model;
 
+import android.util.Base64;
 import android.util.Log;
 
 import org.json.JSONArray;
@@ -21,6 +22,16 @@ public class Account {
     String lastName;
     String email;
     String about;
+    String password;
+
+    public byte[] getProfilePicture() {
+        return profilePicture;
+    }
+
+    public void setProfilePicture(byte[] profilePicture) {
+        this.profilePicture = profilePicture;
+    }
+
     byte[] profilePicture;
     boolean showEmail;
     float xCoordinate;
@@ -46,20 +57,23 @@ public class Account {
 
     public static Account mapJson(JSONObject object) throws JSONException, ParseException {
         Account account = new Account();
-
-        //attributes
-
         account.id = object.getLong("id");
         account.firstName = object.getString("firstName");
         account.lastName  = object.getString("lastName");
         account.about  = object.getString("About");
         account.email  = object.getString("Email");
         if(!object.isNull("Image")){
-            account.profilePicture = (byte[]) object.get("Image");
+            account.profilePicture = Base64.decode(object.getString("Image"), Base64.DEFAULT);
         }
         account.showEmail  = (object.getInt("showEmail") != 0 );
-        account.xCoordinate  = Float.parseFloat(object.getString("xCoordinate"));
-        account.yCoordinate  = Float.parseFloat(object.getString("yCoordinate"));
+        if(object.has("xCoordinate") && object.has("yCoordinate")){
+            if(!object.isNull("xCoordinate")){
+                account.xCoordinate  = Float.parseFloat(object.getString("xCoordinate"));
+            }
+            if(!object.isNull("yCoordinate")) {
+                account.yCoordinate = Float.parseFloat(object.getString("yCoordinate"));
+            }
+        }
 
 
         // includes
@@ -137,14 +151,6 @@ public class Account {
                 account.createdGroups.addLast(group);
             }
         }
-
-
-
-
-        // TODO what is a reaction ?
-        // TODO why voteInPoll has an array of integers instead of JSONObjects ?
-
-
         return account;
     }
     public LinkedList<Group> getGroups() {

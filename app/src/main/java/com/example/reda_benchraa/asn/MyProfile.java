@@ -1,16 +1,25 @@
 package com.example.reda_benchraa.asn;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.database.Cursor;
+import android.graphics.BitmapFactory;
+import android.media.Image;
+import android.net.Uri;
+import android.provider.MediaStore;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.util.Base64;
 import android.util.Log;
 import android.view.Menu;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.ToggleButton;
 
@@ -27,19 +36,31 @@ import com.example.reda_benchraa.asn.Model.Account;
 import com.example.reda_benchraa.asn.Model.Group;
 import com.google.gson.Gson;
 
+import org.apache.commons.io.IOUtils;
 import org.json.*;
+import org.w3c.dom.Text;
+
+import java.io.BufferedInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.InputStream;
 import java.text.ParseException;
 import java.util.HashMap;
 import java.util.Map;
 
 public class MyProfile extends AppCompatActivity {
+    static int PICK_PHOTO_FOR_AVATAR = 1;
     private Toolbar toolbar;
     EditText firstNameEt;
     EditText lastNameEt;
     EditText emailEt;
     ToggleButton hideEmail;
     Button submit;
+    ImageView image;
     Context context;
+    Account account;
+    TextView nameTv;
+    EditText aboutTv;
     static SharedPreferences sharedpreferences;
     public static final String MyPREFERENCES = "Account" ;
     @Override
@@ -48,6 +69,7 @@ public class MyProfile extends AppCompatActivity {
         setContentView(R.layout.activity_my_profile);
         toolbar = (Toolbar) findViewById(R.id.tool_bar);
         setSupportActionBar(toolbar);
+        nameTv = (TextView) toolbar.findViewById(R.id.name);
         context = this;
         sharedpreferences = getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
         hideEmail = (ToggleButton) findViewById(R.id.myProfile_hideEmail);
@@ -55,14 +77,19 @@ public class MyProfile extends AppCompatActivity {
         lastNameEt = (EditText) findViewById(R.id.myProfile_lastName);
         emailEt = (EditText) findViewById(R.id.myProfile_email);
         submit = (Button) findViewById(R.id.myProfile_save);
+        image = (ImageView) findViewById(R.id.myProfile_image);
+        aboutTv = (EditText) findViewById(R.id.myProfile_about);
         Gson gson = new Gson();
         String json = sharedpreferences.getString("myAccount", "");
-        final Account account = gson.fromJson(json, Account.class);
+        account = gson.fromJson(json, Account.class);
         try {
             emailEt.setText(account.getEmail());
             lastNameEt.setText(account.getLastName());
             firstNameEt.setText(account.getFirstName());
             hideEmail.setChecked(account.isShowEmail());
+            image.setImageBitmap(BitmapFactory.decodeByteArray(account.getProfilePicture(),0,account.getProfilePicture().length));
+            aboutTv.setText(account.getAbout());
+            nameTv.setText(account.getFirstName() + " " + account.getLastName());
         } catch (Exception e) {
             startActivity(new Intent(getApplicationContext(), login.class));
         }
@@ -70,25 +97,61 @@ public class MyProfile extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 int showEmail = (hideEmail.isChecked()) ? 1 : 0;
+                String encodedImage = Base64.encodeToString(account.getProfilePicture(), Base64.DEFAULT);
                 Map map = new HashMap<String, String>();
                 map.put("firstName",firstNameEt.getText().toString());
                 map.put("lastName",lastNameEt.getText().toString());
                 map.put("Email",emailEt.getText().toString());
                 map.put("showEmail",Integer.toString(showEmail));
+                map.put("About",aboutTv.getText().toString());
+                map.put("Image",encodedImage);
                 account.setFirstName(firstNameEt.getText().toString());
                 account.setLastName(lastNameEt.getText().toString());
                 account.setEmail(emailEt.getText().toString());
                 account.setShowEmail(hideEmail.isChecked());
+                account.setAbout(aboutTv.getText().toString());
                 SharedPreferences.Editor editor = sharedpreferences.edit();
                 Gson gson = new Gson();
                 String json = gson.toJson(account);
                 editor.putString("myAccount", json);
                 editor.apply();
-                updateAccount(context,map,Utility.getProperty("API_URL",context)+"Accounts");
+                updateAccount(context,map,Utility.getProperty("API_URL",context)+"Accounts/"+account.getId());
+            }
+        });
+        image.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
+                intent.setType("image/*");
+                intent.setAction(Intent.ACTION_GET_CONTENT);
+                startActivityForResult(intent, PICK_PHOTO_FOR_AVATAR);
             }
         });
     }
-
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == PICK_PHOTO_FOR_AVATAR && resultCode == Activity.RESULT_OK) {
+            if (data == null) {
+                Toast.makeText(context, "No photo selected", Toast.LENGTH_SHORT).show();
+                return;
+            }
+            try {
+                InputStream inputStream = context.getContentResolver().openInputStream(data.getData());
+                Uri selectedImage = data.getData();
+                String[] filePathColumn = { MediaStore.Images.Media.DATA };
+                Cursor cursor = getContentResolver().query(selectedImage,filePathColumn, null, null, null);
+                cursor.moveToFirst();
+                int columnIndex = cursor.getColumnIndex(filePathColumn[0]);
+                String picturePath = cursor.getString(columnIndex);
+                cursor.close();
+                account.setProfilePicture(IOUtils.toByteArray(inputStream));
+                image.setImageBitmap(BitmapFactory.decodeFile(picturePath));
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+    }
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
