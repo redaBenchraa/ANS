@@ -5,17 +5,25 @@ import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.widget.ImageView;
+import android.widget.ListView;
+import android.widget.TextView;
+
+import java.util.HashMap;
+import java.util.Map;
 
 public class InfoGroup extends AppCompatActivity {
     private Toolbar toolbar;
-    ImageView image;
-
+    ImageView groupImage;
+    TextView groupName,about;
+    ListView owner,admins,members;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_info_group);
         toolbar = (Toolbar) findViewById(R.id.tool_bar);
         setSupportActionBar(toolbar);
+
+
     }
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
