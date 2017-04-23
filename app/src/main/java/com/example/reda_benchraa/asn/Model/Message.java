@@ -17,13 +17,60 @@ import java.util.TimeZone;
 public class Message {
 
     long id;
-    String content;     // TODO this is a problem, the content should be an object that can contain the same things as a post, to allow sending files in messages
+    String content;
     Date date;
     long account_id;
     long conversation_id;
-
-    Conversation conversation; // Isn't this recursive ?
+    Conversation conversation;
     Account account;
+
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
+    }
+
+    public String getContent() {
+        return content;
+    }
+
+    public void setContent(String content) {
+        this.content = content;
+    }
+
+    public Date getDate() {
+        return date;
+    }
+
+    public void setDate(Date date) {
+        this.date = date;
+    }
+
+    public long getAccount_id() {
+        return account_id;
+    }
+
+    public void setAccount_id(long account_id) {
+        this.account_id = account_id;
+    }
+
+    public long getConversation_id() {
+        return conversation_id;
+    }
+
+    public void setConversation_id(long conversation_id) {
+        this.conversation_id = conversation_id;
+    }
+
+    public Account getAccount() {
+        return account;
+    }
+
+    public void setAccount(Account account) {
+        this.account = account;
+    }
 
 
     public static Message mapJson(JSONObject object) throws JSONException, ParseException {

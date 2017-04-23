@@ -7,36 +7,31 @@
     >
 
     <LinearLayout
-        android:orientation="horizontal"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
-        <ImageView
-            android:layout_width="60dp"
-            android:layout_height="56dp"
-            app:srcCompat="@mipmap/avatar"
-            android:id="@+id/message_item_image" />
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:orientation="horizontal">
 
         <LinearLayout
-            android:orientation="vertical"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="1">
+            android:layout_weight="1"
+            android:orientation="vertical">
 
             <TextView
-                android:text="TextView"
+                android:id="@+id/message_item_fullNames"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/message_item_fullName"
                 android:layout_margin="5dp"
+                android:text="TextView"
                 android:textColor="@android:color/background_dark" />
 
             <TextView
-                android:text="TextView"
+                android:id="@+id/message_item_lastMessage"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/message_item_lastMessage"
-                android:layout_margin="5dp" />
+                android:layout_margin="5dp"
+                android:text="TextView" />
 
         </LinearLayout>
     </LinearLayout>

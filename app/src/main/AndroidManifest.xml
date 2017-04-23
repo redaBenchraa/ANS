@@ -33,6 +33,7 @@
             android:theme="@style/AppTheme" />
         <activity android:name=".group" />
         <activity android:name=".group_poll" />
+        <activity android:name=".MyMessages" />
         <activity android:name=".mynotification" />
         <activity android:name=".post">
 
