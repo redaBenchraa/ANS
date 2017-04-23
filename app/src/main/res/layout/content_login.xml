@@ -59,15 +59,15 @@
                 android:typeface="normal" />
 
             <Button
-                android:text="@string/signin"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
                 android:id="@+id/signIn"
                 style="@style/Widget.AppCompat.Button.Colored"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
                 android:padding="0dp"
                 android:paddingLeft="0dp"
                 android:paddingRight="0dp"
-                android:layout_margin="10dp" />
+                android:text="@string/signin" />
 
         </LinearLayout>
 

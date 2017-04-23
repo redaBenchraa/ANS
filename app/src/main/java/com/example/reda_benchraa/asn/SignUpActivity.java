@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -54,11 +55,8 @@ public class SignUpActivity extends AppCompatActivity{
                     map.put("firstName",fname.getText().toString());
                     map.put("lastName",lname.getText().toString());
                     map.put("Email",email.getText().toString());
-                    map.put("Password",password.getText().toString());
+                    map.put("password",password.getText().toString());
                     map.put("showEmail","1");
-                    map.put("About"," z");
-                    map.put("xCoordinate","0");
-                    map.put("yCoordinate","0");
                     addNewAccount(context,map,Utility.getProperty("API_URL",context)+"Accounts");
                 }else{
                     Toast.makeText(context, "Passwords do not match", Toast.LENGTH_SHORT).show();
@@ -72,6 +70,7 @@ public class SignUpActivity extends AppCompatActivity{
             @Override
             public void onResponse(String response) {
                 try {
+                    Log.v("Controller",response);
                     account = Account.mapJson(new JSONObject(response));
                     SharedPreferences.Editor editor = sharedpreferences.edit();
                     Gson gson = new Gson();
@@ -81,6 +80,7 @@ public class SignUpActivity extends AppCompatActivity{
                     Intent intent = new Intent(context,MyProfile.class);
                     context.startActivity(intent);
                 } catch (JSONException | ParseException e) {
+                    Log.v("Controller",e.getMessage());
                     e.printStackTrace();
                 }
             }
