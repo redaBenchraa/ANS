@@ -19,21 +19,38 @@ public class Conversation {
     // {"id":1,"lastMessage":"velit","href":"http:\/\/127.0.0.1:8000\/api\/v1\/Conversations\/1"}
 
     long id;
-    String lastMessage;
-
     LinkedList<Message> messages = new LinkedList<>();
+
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
+    }
+
+    public LinkedList<Message> getMessages() {
+        return messages;
+    }
+
+    public void setMessages(LinkedList<Message> messages) {
+        this.messages = messages;
+    }
+
+    public LinkedList<Account> getAccounts() {
+        return accounts;
+    }
+
+    public void setAccounts(LinkedList<Account> accounts) {
+        this.accounts = accounts;
+    }
+
     LinkedList<Account> accounts = new LinkedList<>();
-
-
     public static Conversation mapJson(JSONObject object) throws JSONException, ParseException {
         Conversation conversation = new Conversation();
 
         // attributes
-
         conversation.id = object.getLong("id");
-        conversation.lastMessage = object.getString("lastMessage");
-
-
         // includes
         if(object.has("messages")){
             JSONArray messagesArray = object.getJSONArray("messages");
@@ -61,20 +78,4 @@ public class Conversation {
 
     public Conversation() {
     }
-
-//    public LinkedList<Account> getParticipants() {
-//        return participants;
-//    }
-//
-//    public void setParticipants(LinkedList<Account> participants) {
-//        this.participants = participants;
-//    }
-//
-//    public LinkedList<Message> getMessages() {
-//        return messages;
-//    }
-//
-//    public void setMessages(LinkedList<Message> messages) {
-//        this.messages = messages;
-//    }
 }

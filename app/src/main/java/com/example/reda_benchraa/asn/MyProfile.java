@@ -89,9 +89,12 @@ public class MyProfile extends AppCompatActivity {
             lastNameEt.setText(account.getLastName());
             firstNameEt.setText(account.getFirstName());
             hideEmail.setChecked(account.isShowEmail());
-            image.setImageBitmap(BitmapFactory.decodeByteArray(account.getProfilePicture(),0,account.getProfilePicture().length));
+            if(account.getProfilePicture() != null){
+                image.setImageBitmap(BitmapFactory.decodeByteArray(account.getProfilePicture(),0,account.getProfilePicture().length));
+            }
             aboutTv.setText(account.getAbout());
         } catch (Exception e) {
+            e.printStackTrace();
             startActivity(new Intent(getApplicationContext(), login.class));
         }
         submit.setOnClickListener(new View.OnClickListener() {
