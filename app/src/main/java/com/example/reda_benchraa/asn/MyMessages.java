@@ -9,6 +9,7 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -28,6 +29,7 @@ import com.example.reda_benchraa.asn.DAO.Utility;
 import com.example.reda_benchraa.asn.Model.Account;
 import com.google.gson.Gson;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -64,7 +66,7 @@ public class MyMessages extends AppCompatActivity {
         String json = sharedpreferences.getString("myAccount", "");
         account = gson.fromJson(json, Account.class);
         lastMessages = (ListView) findViewById(R.id.listView_myMessages);
-        Toast.makeText(this, "", Toast.LENGTH_SHORT).show();
+        Log.v("Controller",Utility.getProperty("API_URL",context)+"Accounts/"+account.getId()+"?include=conversations");
         getMessages(context,new HashMap<String,String>(),Utility.getProperty("API_URL",context)+"Accounts/"+account.getId()+"?include=conversations");
     }
 
@@ -103,11 +105,11 @@ public class MyMessages extends AppCompatActivity {
     }
     public void getMessages(final Context context, final Map map, final String url){
         RequestQueue queue = Volley.newRequestQueue(context);
-        StringRequest sr = new StringRequest(Request.Method.PUT,url, new Response.Listener<String>() {
+        StringRequest sr = new StringRequest(Request.Method.GET,url, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
                 try {
-                    account = Account.mapJson(new JSONObject(response));
+                    account = Account.mapJson((JSONObject) new JSONArray(response).get(0));
                     Toast.makeText(context,account.getConversations().size()+" Here", Toast.LENGTH_SHORT).show();
                     messagesAdapter = new messageArrayAdapter(context, R.layout.my_message_item, account.getConversations());
                     lastMessages .setAdapter(messagesAdapter);
