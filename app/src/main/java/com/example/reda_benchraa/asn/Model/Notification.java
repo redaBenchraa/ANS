@@ -4,6 +4,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.Serializable;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -12,7 +13,7 @@ import java.util.Date;
  * Created by Rabab Chahboune on 4/7/2017.
  */
 
-public class Notification {
+public class Notification implements Serializable {
     long id;
     String content;
     Date date;

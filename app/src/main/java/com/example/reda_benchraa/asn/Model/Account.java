@@ -7,6 +7,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.Serializable;
 import java.sql.Blob;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -16,7 +17,7 @@ import java.util.LinkedList;
  * Created by Rabab Chahboune on 4/7/2017.
  */
 
-public class Account {
+public class Account implements Serializable{
     long id;
     String firstName;
     String lastName;
@@ -258,5 +259,9 @@ public class Account {
                 ", email='" + email + '\'' +
                 ", showEmail=" + showEmail +
                 '}';
+    }
+    @Override
+    public boolean equals(Object obj) {
+        return (this.getEmail().equals(((Account)obj).getEmail()));
     }
 }

@@ -39,8 +39,8 @@ public class messageArrayAdapter extends ArrayAdapter<Conversation> {
             TextView names = (TextView) v.findViewById(R.id.message_item_fullNames);
             TextView lastMessage = (TextView) v.findViewById(R.id.message_item_lastMessage);
             ImageView image = (ImageView) v.findViewById(R.id.message_item_image);
-            if(conversation.getAccounts().get(3).getProfilePicture() != null){
-                image.setImageBitmap(BitmapFactory.decodeByteArray(conversation.getAccounts().get(3).getProfilePicture(),0,conversation.getAccounts().get(3).getProfilePicture().length));
+            if(conversation.getAccounts().getLast().getProfilePicture() != null){
+                image.setImageBitmap(BitmapFactory.decodeByteArray(conversation.getAccounts().getLast().getProfilePicture(),0,conversation.getAccounts().getLast().getProfilePicture().length));
             }
             for (Account account : conversation.getAccounts())
                 name.append(" "+account.getFirstName());

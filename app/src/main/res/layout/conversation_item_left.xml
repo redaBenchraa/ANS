@@ -1,37 +1,43 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:orientation="horizontal" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="horizontal"
+    android:padding="10dp">
 
     <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:srcCompat="@mipmap/avatar"
-        android:id="@+id/imageView6" />
+        android:id="@+id/image"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        app:srcCompat="@mipmap/avatar" />
 
     <LinearLayout
-        android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
         android:weightSum="1">
 
         <TextView
-            android:text="Publisher"
+            android:id="@+id/publisher"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/textView6"
-            android:textSize="18sp"
-            android:layout_marginLeft="5dp"
-            android:textColor="@android:color/background_dark" />
+            android:layout_marginLeft="20dp"
+            android:text="Publisher"
+            android:textColor="@color/grey"
+            android:textSize="14sp"
+            android:textStyle="bold" />
 
         <TextView
-            android:text="Message"
+            android:id="@+id/message"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/textView8"
             android:paddingLeft="15dp"
-            android:paddingRight="15dp" />
+            android:paddingRight="15dp"
+            android:text="Message"
+            android:textAppearance="@style/TextAppearance.AppCompat"
+            android:textColor="@color/light_grey"
+            android:textSize="18sp" />
 
     </LinearLayout>
 
