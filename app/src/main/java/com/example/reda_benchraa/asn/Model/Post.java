@@ -7,6 +7,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 
+import java.io.Serializable;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -16,7 +17,7 @@ import java.util.LinkedList;
  * Created by Rabab Chahboune on 4/7/2017.
  */
 
-public class Post {
+public class Post implements Serializable {
 
     // fields based on the sql table defintions
 

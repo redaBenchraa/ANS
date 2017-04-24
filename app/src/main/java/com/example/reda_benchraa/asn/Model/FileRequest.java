@@ -1,13 +1,14 @@
 package com.example.reda_benchraa.asn.Model;
 
 import java.io.File;
+import java.io.Serializable;
 import java.util.LinkedList;
 
 /**
  * Created by Rabab Chahboune on 4/7/2017.
  */
 
-public class FileRequest {
+public class FileRequest implements Serializable {
     LinkedList<SubmitedFile> submittedFiles = new LinkedList<>();
 
     class SubmitedFile {

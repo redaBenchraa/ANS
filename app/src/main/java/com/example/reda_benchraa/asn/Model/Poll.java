@@ -4,6 +4,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.Serializable;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.LinkedList;
@@ -12,7 +13,7 @@ import java.util.LinkedList;
  * Created by Rabab Chahboune on 4/7/2017.
  */
 
-public class Poll {
+public class Poll implements Serializable {
 //    LinkedList<PollOption> pollOptions = new LinkedList<>();
 //    PollPrivacy pollPrivacy;
 //

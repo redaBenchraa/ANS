@@ -9,8 +9,8 @@
 
     <ImageView
         android:id="@+id/contact_image"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
+        android:layout_width="25dp"
+        android:layout_height="25dp"
         app:srcCompat="@mipmap/avatar" />
 
     <TextView
