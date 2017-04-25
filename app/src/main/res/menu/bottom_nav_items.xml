@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+
+    <item
+        android:id="@+id/menu_modify"
+        android:title="@string/modify"
+        android:icon="@drawable/ic_settings"
+        android:textColor="@android:color/background_light"
+        />
+    <item
+        android:id="@+id/menu_admins"
+        android:title="@string/manageAdmins"
+        android:icon="@drawable/ic_admin"
+        android:textColor="@android:color/background_light"
+        />
+
+    <item
+        android:id="@+id/menu_members"
+        android:title="@string/manageMembers"
+        android:icon="@drawable/ic_members"
+        android:textColor="@android:color/background_light"/>
+    <item
+        android:id="@+id/menu_request"
+        android:title="@string/manageRequest"
+        android:icon="@drawable/ic_notification"
+        android:textColor="@android:color/background_light"/>
+</menu>

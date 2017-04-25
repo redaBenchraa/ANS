@@ -44,4 +44,19 @@
     <string name="addPoll">Add a poll</string>
     <string name="comment">Comment ...</string>
     <string name="title_activity_conversation">conversation</string>
+    <string name="title_activity_update_group">updateGroup</string>
+    <string name="title_home">Home</string>
+    <string name="title_dashboard">Dashboard</string>
+    <string name="title_notifications">Notifications</string>
+    <!--modify group-->
+    <string name="modify">Modify</string>
+    <string name="manageAdmins">Admins</string>
+    <string name="manageMembers">Members</string>
+    <string name="manageRequest">Requests</string>
+    <string name="about">About</string>
+    <string name="delete">Delete member</string>
+    <string name="makeAdmin">Add as admin</string>
+
+
+
 </resources>
