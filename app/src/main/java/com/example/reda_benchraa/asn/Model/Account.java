@@ -79,15 +79,6 @@ public class Account implements Serializable,Comparable<Account>{
 
 
         // includes
-
-        if(object.has("groups")){
-            JSONArray groupsArray = object.getJSONArray("groups");
-            for (int i=0;i<groupsArray.length();i++){
-                JSONObject groupObject = (JSONObject) groupsArray.get(i);
-                Group group = Group.mapJson(groupObject);
-                account.groups.addLast(group);
-            }
-        }
         if(object.has("notifications")){
             JSONArray notificationsArray = object.getJSONArray("notifications");
             for (int i=0;i<notificationsArray.length();i++){

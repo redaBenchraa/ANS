@@ -15,7 +15,11 @@
     </include>
 
     <ListView
+        android:id="@+id/listView_myGroups"
+        style="@android:style/Widget.Material.ListView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:id="@+id/listView_myGroups" />
+        android:clickable="true"
+        android:elevation="0dp"
+        android:visibility="visible" />
 </LinearLayout>

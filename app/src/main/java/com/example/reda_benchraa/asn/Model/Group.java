@@ -1,5 +1,7 @@
 package com.example.reda_benchraa.asn.Model;
 
+import android.util.Base64;
+
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -32,7 +34,69 @@ public class Group implements Serializable {
 //    enum PublishingSettings { ADMINS_ONLY, ALL_MEMBERS }
 
 
+    public byte[] getImage() {
+        return image;
+    }
 
+    public void setImage(byte[] image) {
+        this.image = image;
+    }
+
+    public String getAbout() {
+        return about;
+    }
+
+    public void setAbout(String about) {
+        this.about = about;
+    }
+
+    public Date getCreationDate() {
+        return creationDate;
+    }
+
+    public void setCreationDate(Date creationDate) {
+        this.creationDate = creationDate;
+    }
+
+    public LinkedList<Post> getPosts() {
+        return posts;
+    }
+
+    public void setPosts(LinkedList<Post> posts) {
+        this.posts = posts;
+    }
+
+    public LinkedList<Account> getAdmins() {
+        return admins;
+    }
+
+    public void setAdmins(LinkedList<Account> admins) {
+        this.admins = admins;
+    }
+
+    public LinkedList<Account> getMembers() {
+        return members;
+    }
+
+    public void setMembers(LinkedList<Account> members) {
+        this.members = members;
+    }
+
+    public Account getOwner() {
+        return owner;
+    }
+
+    public void setOwner(Account owner) {
+        this.owner = owner;
+    }
+
+    public Group getSuperGroup() {
+        return superGroup;
+    }
+
+    public void setSuperGroup(Group superGroup) {
+        this.superGroup = superGroup;
+    }
 
     long id;
     String name;
@@ -67,7 +131,7 @@ public class Group implements Serializable {
         group.id = object.getInt("id");
         group.name = object.getString("Name");
         if(!object.isNull("Image")){
-            group.image = (byte[]) object.get("Image");
+            group.image = Base64.decode(object.getString("Image"), Base64.DEFAULT);
         }
         group.about = object.getString("About");
         group.creationDate = new SimpleDateFormat("yyyy-MM-dd").parse(object.getString("createdDate"));
