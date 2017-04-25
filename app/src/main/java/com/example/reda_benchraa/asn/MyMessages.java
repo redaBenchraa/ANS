@@ -110,6 +110,11 @@ public class MyMessages extends AppCompatActivity {
         }
         return super.onOptionsItemSelected(item);
     }
+    @Override
+    public void onResume(){
+        super.onResume();
+        getMessages(context,new HashMap<String,String>(),Utility.getProperty("API_URL",context)+"Accounts/"+account.getId()+"?include=conversations");
+    }
     public void getMessages(final Context context, final Map map, final String url){
         RequestQueue queue = Volley.newRequestQueue(context);
         StringRequest sr = new StringRequest(Request.Method.GET,url, new Response.Listener<String>() {
@@ -118,7 +123,7 @@ public class MyMessages extends AppCompatActivity {
                 try {
                     account = Account.mapJson((JSONObject) new JSONArray(response).get(0));
                     messagesAdapter = new messageArrayAdapter(context, R.layout.my_message_item, account.getConversations());
-                    lastMessages .setAdapter(messagesAdapter);
+                    lastMessages.setAdapter(messagesAdapter);
                 } catch (JSONException | ParseException e) {
                     e.printStackTrace();
                 }
@@ -141,5 +146,6 @@ public class MyMessages extends AppCompatActivity {
         };
         queue.add(sr);
     }
+
 
 }

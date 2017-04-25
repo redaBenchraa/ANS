@@ -44,6 +44,9 @@ import java.io.ByteArrayOutputStream;
 import java.nio.ByteBuffer;
 import java.text.ParseException;
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
@@ -119,11 +122,13 @@ public class add_contact_message extends AppCompatActivity {
                 CheckBox checkBoxv = (CheckBox) view.findViewById(R.id.checkBox);
                 TextView emailv = (TextView) view.findViewById(R.id.email);
                 TextView namev = (TextView) view.findViewById(R.id.contact_name);
+                TextView idv = (TextView) view.findViewById(R.id.id);
                 ImageView imagev = (ImageView) view.findViewById(R.id.contact_image);
                 Account account = new Account();
                 account.setFirstName(namev.getText().toString());
                 account.setLastName("");
                 account.setEmail(emailv.getText().toString());
+                account.setId(Long.parseLong(idv.getText().toString()));
                 new ByteArrayOutputStream().toByteArray();
                 Bitmap bitm = ((BitmapDrawable)imagev.getDrawable()).getBitmap();
                 ByteArrayOutputStream stream = new ByteArrayOutputStream();
@@ -148,6 +153,7 @@ public class add_contact_message extends AppCompatActivity {
         addAccouts.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Collections.sort(accounts);
                 Intent resultIntent = new Intent();
                 resultIntent.putExtra("accounts", accounts);
                 setResult(Activity.RESULT_OK, resultIntent);
@@ -191,14 +197,5 @@ public class add_contact_message extends AppCompatActivity {
             }
         };
         queue.add(sr);
-    }
-
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-        Intent resultIntent = new Intent();
-        resultIntent.putExtra("accounts", accounts);
-        setResult(Activity.RESULT_OK, resultIntent);
-        finish();
     }
 }

@@ -4,7 +4,6 @@ package com.example.reda_benchraa.asn.Adapters;
  */
 
 import android.content.Context;
-import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -45,7 +44,11 @@ public class messageArrayAdapter extends ArrayAdapter<Conversation> {
             for (Account account : conversation.getAccounts())
                 name.append(" "+account.getFirstName());
             names.setText(name);
-            lastMessage.setText(conversation.getMessages().getLast().getContent());
+            if(conversation.getMessages().isEmpty()){
+                lastMessage.setText(" ");
+            }else{
+                lastMessage.setText(conversation.getMessages().getLast().getContent());
+            }
         }
 
         return v;

@@ -42,10 +42,8 @@ public class conversationArrayAdapter extends ArrayAdapter<Message> {
         Message message = getItem(position);
         if(message != null){
             if(message.getAccount_id() == account_id){
-                Log.v("ConversationArray","conversation_item_right " + account_id + " " + message.getAccount_id() );
                 v = vi.inflate(R.layout.conversation_item_right, null);
             }else{
-                Log.v("ConversationArray","conversation_item_left " + account_id + " " + message.getAccount_id());
                 v = vi.inflate(R.layout.conversation_item_left, null);
             }
             TextView messageText = (TextView) v.findViewById(R.id.message);
@@ -53,7 +51,6 @@ public class conversationArrayAdapter extends ArrayAdapter<Message> {
             ImageView image = (ImageView) v.findViewById(R.id.image);
             messageText.setText(message.getContent());
             for(Account account : accounts){
-                Log.v("ConversationAdapter","Assert " + message.getAccount_id() + " " + account.getId());
                 if(message.getAccount_id() == account.getId()){
                     publisher.setText(account.getFirstName());
                     if(account.getProfilePicture() != null){

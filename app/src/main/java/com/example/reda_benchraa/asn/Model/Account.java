@@ -1,5 +1,6 @@
 package com.example.reda_benchraa.asn.Model;
 
+import android.support.annotation.NonNull;
 import android.util.Base64;
 import android.util.Log;
 
@@ -17,7 +18,7 @@ import java.util.LinkedList;
  * Created by Rabab Chahboune on 4/7/2017.
  */
 
-public class Account implements Serializable{
+public class Account implements Serializable,Comparable<Account>{
     long id;
     String firstName;
     String lastName;
@@ -263,5 +264,15 @@ public class Account implements Serializable{
     @Override
     public boolean equals(Object obj) {
         return (this.getEmail().equals(((Account)obj).getEmail()));
+    }
+
+    @Override
+    public int compareTo(@NonNull Account o) {
+        final int BEFORE = -1;
+        final int EQUAL = 0;
+        final int AFTER = 1;
+        if(o.getId() == this.getId()) return EQUAL;
+        else if(o.getId() < this.getId()) return  BEFORE;
+        else return AFTER;
     }
 }

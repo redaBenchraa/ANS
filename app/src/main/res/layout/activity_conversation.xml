@@ -53,19 +53,19 @@
             android:gravity="bottom">
 
             <EditText
+                android:id="@+id/message_text"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:inputType="textMultiLine"
-                android:ems="10"
-                android:id="@+id/editText"
                 android:layout_weight="1"
-                android:hint="@string/message" />
+                android:ems="10"
+                android:hint="@string/message"
+                android:inputType="textMultiLine" />
 
             <ImageButton
+                android:id="@+id/sendButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                app:srcCompat="@drawable/ic_send"
-                android:id="@+id/imageButton" />
+                app:srcCompat="@drawable/ic_send" />
         </LinearLayout>
     </LinearLayout>
 

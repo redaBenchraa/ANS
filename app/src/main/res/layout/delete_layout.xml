@@ -57,15 +57,5 @@
                 android:text="No" />
         </LinearLayout>
 
-    </LinearLayout><![CDATA[
-
-
-
-    />
-
-
-
-
-
-    ]]>
+    </LinearLayout>
 </RelativeLayout>

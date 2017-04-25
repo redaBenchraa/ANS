@@ -56,7 +56,7 @@ public class newMessageAddContactArrayAdapter extends ArrayAdapter<Account> {
             }
             name.setText(account.getFirstName() + " " + account.getLastName());
             email.setText(account.getEmail());
-            id.setText(account.getEmail());
+            id.setText(account.getId()+"");
             checkBox.setEnabled(false);
         }
 

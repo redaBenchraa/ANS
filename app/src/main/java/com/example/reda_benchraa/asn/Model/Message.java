@@ -11,6 +11,7 @@ import java.io.Serializable;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.Objects;
 import java.util.TimeZone;
 
 /**
@@ -103,6 +104,10 @@ public class Message implements Serializable {
     public Message() {
     }
 
+    @Override
+    public boolean equals(Object obj){
+        return  (((Message)obj).getDate().equals(this.getDate()) && ((Message)obj).getContent().equals(this.getContent())) ;
+    }
     public Conversation getConversation() {
         return conversation;
     }

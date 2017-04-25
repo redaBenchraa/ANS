@@ -10,30 +10,52 @@ import android.graphics.BitmapFactory;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.android.volley.AuthFailureError;
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
+import com.example.reda_benchraa.asn.DAO.Utility;
 import com.example.reda_benchraa.asn.Model.Account;
+import com.example.reda_benchraa.asn.Model.Conversation;
+import com.example.reda_benchraa.asn.Model.Message;
+import com.google.gson.Gson;
+
+import org.json.JSONObject;
 
 import java.util.ArrayList;
-import java.util.Collections;
-import java.util.LinkedList;
+
+import java.util.HashMap;
+import java.util.Map;
 
 public class NewMessage extends AppCompatActivity {
     private Toolbar toolbar;
+    static Conversation conversation;
+    static Message message;
     ArrayList<Account> accounts;
-    ImageButton close;
+    ImageButton close,send;
     ImageView add;
     Context context;
+    EditText content;
+    Account account;
+    static SharedPreferences sharedpreferences;
+    public static final String MyPREFERENCES = "Account" ;
     final int ADD_ACCOUNTS_ACTIVITY = 100;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,8 +65,12 @@ public class NewMessage extends AppCompatActivity {
         setSupportActionBar(toolbar);
         ((TextView) toolbar.findViewById(R.id.name)).setText(getResources().getString(R.string.new_Message));
         close = (ImageButton) findViewById(R.id.newMessage_cancelButton);
+        send = (ImageButton) findViewById(R.id.newMessage_sendButton);
         add = (ImageView) findViewById(R.id.newmessage_add);
+        content = (EditText) findViewById(R.id.newMessage_message);
         accounts = new ArrayList<>();
+        sharedpreferences = getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
+        account =  new Gson().fromJson(sharedpreferences.getString("myAccount", ""), Account.class);
         if(getIntent().hasExtra("account")){
             accounts.add((Account)getIntent().getSerializableExtra("account"));
         }
@@ -78,7 +104,13 @@ public class NewMessage extends AppCompatActivity {
         add.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivityForResult(new Intent(getApplicationContext(),add_contact_message.class).putExtra("accounts",accounts),ADD_ACCOUNTS_ACTIVITY);
+                startActivityForResult(new Intent(getApplicationContext(),add_contact_message.class).putExtra("accounts", accounts),ADD_ACCOUNTS_ACTIVITY);
+            }
+        });
+        send.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                CreateConversation(context,new HashMap<>(),Utility.getProperty("API_URL",context)+"Conversations/");
             }
         });
     }
@@ -163,4 +195,118 @@ public class NewMessage extends AppCompatActivity {
             }
         }
     }
+
+    public void CreateConversation(final Context context, final Map map, final String url){
+        RequestQueue queue = Volley.newRequestQueue(context);
+        StringRequest sr = new StringRequest(Request.Method.POST,url, new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+                try{
+                    conversation = Conversation.mapJson(new JSONObject(response));
+                    String accountIds = "";
+                    Map map = new HashMap<>();
+                    accounts.add(account);
+                    for (Account account:accounts)
+                        accountIds = accountIds + "," + account.getId();
+                    accounts.remove(account);
+                    accountIds = accountIds.substring(1);
+                    map.put("accountIds",accountIds);
+                    addAccounts(context,map,Utility.getProperty("API_URL",context)+"Conversations/"+Long.toString(conversation.getId())+"/addAccounts");
+                }catch (Exception e){
+                    Toast.makeText(context, "Error sending the message", Toast.LENGTH_SHORT).show();
+                    e.printStackTrace();
+                }
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Toast.makeText(context, "Error creating the conversation", Toast.LENGTH_SHORT).show();
+                Log.v("New Message",error.getMessage());
+            }
+        }){
+            @Override
+            protected Map<String,String> getParams(){
+                return map;
+            }
+
+            @Override
+            public Map<String, String> getHeaders() throws AuthFailureError {
+                return Utility.getMap();
+            }
+        };
+        queue.add(sr);
+    }
+    public void addAccounts(final Context context, final Map map, final String url){
+        RequestQueue queue = Volley.newRequestQueue(context);
+        StringRequest sr = new StringRequest(Request.Method.POST,url, new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+                try{
+                    Log.v("New Message",url);
+                    Map map = new HashMap<>();
+                    map.put("Content",content.getText().toString());
+                    map.put("Account_id",account.getId()+"");
+                    map.put("Conversation_id",conversation.getId()+"");
+                    sendMessage(context,map,Utility.getProperty("API_URL",context)+"Messages/");
+                }catch (Exception e){
+                    Toast.makeText(context, "Error sending the message", Toast.LENGTH_SHORT).show();
+                    e.printStackTrace();
+                }
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Toast.makeText(context, "Error adding accounts", Toast.LENGTH_SHORT).show();
+                Log.v("New Message",error.getMessage());
+            }
+        }){
+            @Override
+            protected Map<String,String> getParams(){
+                return map;
+            }
+
+            @Override
+            public Map<String, String> getHeaders() throws AuthFailureError {
+                return Utility.getMap();
+            }
+        };
+        queue.add(sr);
+    }
+    public void sendMessage(final Context context, final Map map, final String url){
+        RequestQueue queue = Volley.newRequestQueue(context);
+        StringRequest sr = new StringRequest(Request.Method.POST,url, new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+                try{
+                    Log.v("New Message",url);
+                    message = Message.mapJson(new JSONObject(response));
+                    Toast.makeText(context, "Message sent", Toast.LENGTH_SHORT).show();
+                    Intent intent = new Intent(context,MyMessages.class);
+                    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_TASK_ON_HOME);
+                    context.startActivity(intent);
+                    finish();
+                }catch (Exception e){
+                    Toast.makeText(context, "Error sending the message", Toast.LENGTH_SHORT).show();
+                    e.printStackTrace();
+                }
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Toast.makeText(context, "Error sending the message", Toast.LENGTH_SHORT).show();
+                Log.v("New Message",error.getMessage());            }
+        }){
+            @Override
+            protected Map<String,String> getParams(){
+                return map;
+            }
+
+            @Override
+            public Map<String, String> getHeaders() throws AuthFailureError {
+                return Utility.getMap();
+            }
+        };
+        queue.add(sr);
+    }
+
 }
