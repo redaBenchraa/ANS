@@ -5,7 +5,6 @@ package com.example.reda_benchraa.asn.Adapters;
 
 import android.content.Context;
 import android.graphics.BitmapFactory;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,13 +12,9 @@ import android.widget.ArrayAdapter;
 import android.widget.CheckBox;
 import android.widget.ImageView;
 import android.widget.TextView;
-
 import com.example.reda_benchraa.asn.Model.Account;
-import com.example.reda_benchraa.asn.Model.Message;
 import com.example.reda_benchraa.asn.R;
-
 import java.util.ArrayList;
-import java.util.LinkedList;
 import java.util.List;
 
 public class newMessageAddContactArrayAdapter extends ArrayAdapter<Account> {

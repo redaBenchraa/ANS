@@ -50,7 +50,6 @@ public class messageArrayAdapter extends ArrayAdapter<Conversation> {
                 lastMessage.setText(conversation.getMessages().getLast().getContent());
             }
         }
-
         return v;
     }
 

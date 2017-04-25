@@ -16,11 +16,9 @@ import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
-import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -29,35 +27,32 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.reda_benchraa.asn.Adapters.conversationArrayAdapter;
-import com.example.reda_benchraa.asn.Adapters.messageArrayAdapter;
 import com.example.reda_benchraa.asn.DAO.Utility;
 import com.example.reda_benchraa.asn.Model.Account;
 import com.example.reda_benchraa.asn.Model.Conversation;
 import com.example.reda_benchraa.asn.Model.Message;
 import com.google.gson.Gson;
-
 import org.json.JSONArray;
 import org.json.JSONObject;
-
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Random;
 import java.util.Timer;
 import java.util.TimerTask;
+
 
 public class conversation extends AppCompatActivity {
     private Toolbar toolbar;
     Conversation conversation;
     ListView messagesLv;
-    conversationArrayAdapter messagesAdapter;
-    Account account;
-    Context context;
     ImageButton send;
     EditText message;
     private Timer timer;
+    Map map;
+    conversationArrayAdapter messagesAdapter;
+    Account account;
+    Context context;
     static SharedPreferences sharedpreferences;
     public static final String MyPREFERENCES = "Account" ;
-    Map map;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         final Map  map = new HashMap<>();

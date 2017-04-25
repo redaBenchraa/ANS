@@ -11,14 +11,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
-import android.widget.ListView;
 import android.widget.TextView;
-
 import com.example.reda_benchraa.asn.Model.Account;
-import com.example.reda_benchraa.asn.Model.Conversation;
 import com.example.reda_benchraa.asn.Model.Message;
 import com.example.reda_benchraa.asn.R;
-
 import java.util.LinkedList;
 import java.util.List;
 
@@ -51,6 +47,7 @@ public class conversationArrayAdapter extends ArrayAdapter<Message> {
             ImageView image = (ImageView) v.findViewById(R.id.image);
             messageText.setText(message.getContent());
             for(Account account : accounts){
+                Log.v("ConversationAdapter","Assert " + message.getAccount_id() + " " + account.getId());
                 if(message.getAccount_id() == account.getId()){
                     publisher.setText(account.getFirstName());
                     if(account.getProfilePicture() != null){

@@ -3,7 +3,6 @@ package com.example.reda_benchraa.asn;
 import android.app.Activity;
 import android.app.Dialog;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.BitmapFactory;
@@ -20,10 +19,8 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
-import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -36,26 +33,23 @@ import com.example.reda_benchraa.asn.Model.Account;
 import com.example.reda_benchraa.asn.Model.Conversation;
 import com.example.reda_benchraa.asn.Model.Message;
 import com.google.gson.Gson;
-
 import org.json.JSONObject;
-
 import java.util.ArrayList;
-
 import java.util.HashMap;
 import java.util.Map;
 
 public class NewMessage extends AppCompatActivity {
-    private Toolbar toolbar;
     static Conversation conversation;
     static Message message;
-    ArrayList<Account> accounts;
     ImageButton close,send;
-    ImageView add;
-    Context context;
     EditText content;
     Account account;
     static SharedPreferences sharedpreferences;
     public static final String MyPREFERENCES = "Account" ;
+    private Toolbar toolbar;
+    ArrayList<Account> accounts;
+    ImageView add;
+    Context context;
     final int ADD_ACCOUNTS_ACTIVITY = 100;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -71,6 +65,8 @@ public class NewMessage extends AppCompatActivity {
         accounts = new ArrayList<>();
         sharedpreferences = getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
         account =  new Gson().fromJson(sharedpreferences.getString("myAccount", ""), Account.class);
+        add = (ImageView) findViewById(R.id.newmessage_add);
+        accounts = new ArrayList<>();
         if(getIntent().hasExtra("account")){
             accounts.add((Account)getIntent().getSerializableExtra("account"));
         }
@@ -111,6 +107,7 @@ public class NewMessage extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 CreateConversation(context,new HashMap<>(),Utility.getProperty("API_URL",context)+"Conversations/");
+                startActivityForResult(new Intent(getApplicationContext(),add_contact_message.class).putExtra("accounts",accounts),ADD_ACCOUNTS_ACTIVITY);
             }
         });
     }
@@ -308,5 +305,4 @@ public class NewMessage extends AppCompatActivity {
         };
         queue.add(sr);
     }
-
 }

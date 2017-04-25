@@ -23,7 +23,6 @@ import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -31,25 +30,17 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
-import com.example.reda_benchraa.asn.Adapters.messageArrayAdapter;
 import com.example.reda_benchraa.asn.Adapters.newMessageAddContactArrayAdapter;
 import com.example.reda_benchraa.asn.DAO.Utility;
 import com.example.reda_benchraa.asn.Model.Account;
-
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-
 import java.io.ByteArrayOutputStream;
-import java.nio.ByteBuffer;
 import java.text.ParseException;
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Collections;
-import java.util.Comparator;
 import java.util.HashMap;
-import java.util.LinkedList;
-import java.util.List;
 import java.util.Map;
 
 public class add_contact_message extends AppCompatActivity {
@@ -197,5 +188,14 @@ public class add_contact_message extends AppCompatActivity {
             }
         };
         queue.add(sr);
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        Intent resultIntent = new Intent();
+        resultIntent.putExtra("accounts", accounts);
+        setResult(Activity.RESULT_OK, resultIntent);
+        finish();
     }
 }
