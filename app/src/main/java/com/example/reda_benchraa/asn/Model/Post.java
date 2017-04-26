@@ -20,7 +20,6 @@ import java.util.LinkedList;
 public class Post implements Serializable {
 
     // fields based on the sql table defintions
-
     long id;
     String content;
     byte[] image;
@@ -28,8 +27,6 @@ public class Post implements Serializable {
     int type;
     Date postingDate;
     int popularity;
-    int account_id;
-    int grp_id;
     Date created_at;
     Date updated_at;
 
@@ -43,6 +40,96 @@ public class Post implements Serializable {
 
     LinkedList<Reaction> reactions = new LinkedList<>();
 
+    public String getContent() {
+        return content;
+    }
+
+    public void setContent(String content) {
+        this.content = content;
+    }
+
+    public byte[] getImage() {
+        return image;
+    }
+
+    public void setImage(byte[] image) {
+        this.image = image;
+    }
+
+    public byte[] getFile() {
+        return file;
+    }
+
+    public void setFile(byte[] file) {
+        this.file = file;
+    }
+
+    public int getType() {
+        return type;
+    }
+
+    public void setType(int type) {
+        this.type = type;
+    }
+
+    public Date getPostingDate() {
+        return postingDate;
+    }
+
+    public void setPostingDate(Date postingDate) {
+        this.postingDate = postingDate;
+    }
+
+    public int getPopularity() {
+        return popularity;
+    }
+
+    public void setPopularity(int popularity) {
+        this.popularity = popularity;
+    }
+
+    public Date getCreated_at() {
+        return created_at;
+    }
+
+    public void setCreated_at(Date created_at) {
+        this.created_at = created_at;
+    }
+
+    public Date getUpdated_at() {
+        return updated_at;
+    }
+
+    public void setUpdated_at(Date updated_at) {
+        this.updated_at = updated_at;
+    }
+
+    public LinkedList<Poll> getPolls() {
+        return polls;
+    }
+
+    public void setPolls(LinkedList<Poll> polls) {
+        this.polls = polls;
+    }
+
+    public Account getAccount() {
+        return account;
+    }
+
+    public void setAccount(Account account) {
+        this.account = account;
+    }
+
+    public LinkedList<Reaction> getReactions() {
+        return reactions;
+    }
+
+    public void setReactions(LinkedList<Reaction> reactions) {
+        this.reactions = reactions;
+    }
+
+
+
 
     public static Post mapJson(JSONObject object) throws JSONException, ParseException {
         Post post = new Post();
@@ -51,13 +138,17 @@ public class Post implements Serializable {
 
         post.id = object.getInt("id");
         post.content = object.getString("content");
-        post.file = (byte[]) object.get("file");        // TODO check file and image type, is it really byte[] or Bitmap or Blob ? something else ?
-        post.image = (byte[]) object.get("Image");
+        if(!object.isNull("file")){
+            post.file = (byte[]) object.get("file");
+        }
+        if(!object.isNull("Image")){
+            post.image = (byte[]) object.get("Image");
+        }
         post.type = object.getInt("Type");
         post.postingDate = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").parse(object.getString("postingDate"));
         post.popularity = object.getInt("popularity");
-        post.account_id = object.getInt("Account");
-        post.grp_id = object.getInt("Group");       // TODO check why the webservice always returns posts with "Group":null
+        post.account = Account.mapJson(object.getJSONObject("poster"));
+        post.group = Group.mapJson(object.getJSONObject("group"));
 
 
         // includes as mentioned in the api doc

@@ -4,6 +4,7 @@
     <string name="conversation">Conversation</string>
     <string name="new_Message">New Message</string>
     <string name="new_Message_account">Add accounts </string>
+    <string name="group">Group </string>
     <!-- Sign up page -->
     <string name="firstName">First name</string>
     <string name="emailSignUp">Email</string>

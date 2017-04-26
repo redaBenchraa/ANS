@@ -7,6 +7,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -21,6 +23,7 @@ import com.android.volley.toolbox.Volley;
 import com.example.reda_benchraa.asn.Adapters.myNotificationsArrayAdapter;
 import com.example.reda_benchraa.asn.DAO.Utility;
 import com.example.reda_benchraa.asn.Model.Account;
+import com.example.reda_benchraa.asn.Model.Post;
 import com.google.gson.Gson;
 
 import org.json.JSONArray;
@@ -47,11 +50,16 @@ public class mynotification extends AppCompatActivity {
         ((TextView) toolbar.findViewById(R.id.name)).setText(getResources().getString(R.string.myNotifications));
         account = new Gson().fromJson(sharedpreferences.getString("myAccount", ""), Account.class);
         context = this;
-        account =  new Gson().fromJson(sharedpreferences.getString("myAccount", ""), Account.class);
         myNotificationsLv = (ListView) findViewById(R.id.listView_myNotification);
         MyNotificationsArrayAdapter = new myNotificationsArrayAdapter(getApplicationContext(), R.layout.notification_item_seen,account.getNotifications());
         myNotificationsLv.setAdapter(MyNotificationsArrayAdapter);
         getMyNotifications(context,new HashMap(), Utility.getProperty("API_URL",context)+"Accounts/"+account.getId()+"?include=notifications");
+        myNotificationsLv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                startActivity(new Intent(getApplicationContext(), post.class).putExtra("idPost",Long.toString(account.getNotifications().get(position).getId())));
+            }
+        });
     }
     public boolean onOptionsItemSelected(MenuItem item) {
         // Handle action bar item clicks here. The action bar will

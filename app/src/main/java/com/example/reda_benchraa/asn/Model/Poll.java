@@ -43,7 +43,7 @@ public class Poll implements Serializable {
         poll.id = object.getLong("id");
         poll.content = object.getString("Content");
         poll.vote = object.getInt("Vote");
-        poll.post_id = object.getLong("Post");
+        poll.post_id = object.getLong("Post_id");
 
 
         // TODO fix "include=posts" gives an ErorException in PollService.php line 50

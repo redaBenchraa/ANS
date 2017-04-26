@@ -134,7 +134,7 @@ public class Group implements Serializable {
             group.image = Base64.decode(object.getString("Image"), Base64.DEFAULT);
         }
         group.about = object.getString("About");
-        group.creationDate = new SimpleDateFormat("yyyy-MM-dd").parse(object.getString("createdDate"));
+        group.creationDate = new SimpleDateFormat("yyyy-MM-dd").parse(object.getString("creationDate"));
 
 
         // includes as mentioned in the api doc

@@ -107,11 +107,11 @@
                     android:layout_weight="1" />
 
                 <ImageButton
+                    android:id="@+id/group_poll"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    app:srcCompat="@drawable/ic_poll"
-                    android:id="@+id/imageButton5"
-                    android:layout_weight="1" />
+                    android:layout_weight="1"
+                    app:srcCompat="@drawable/ic_poll" />
 
                 <ImageButton
                     android:layout_width="wrap_content"
