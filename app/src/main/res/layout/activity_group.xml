@@ -22,89 +22,99 @@
             android:layout_height="wrap_content" />
 
         <LinearLayout
-            android:orientation="horizontal"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:padding="12dp"
+            android:paddingBottom="12dp"
             android:paddingEnd="12dp"
             android:paddingLeft="12dp"
-            android:paddingStart="12dp"
             android:paddingRight="12dp"
+            android:paddingStart="12dp"
             android:paddingTop="12dp">
 
             <ImageView
-                app:srcCompat="@mipmap/avatar"
                 android:id="@+id/group_groupPhoto"
                 android:layout_width="50dp"
-                android:layout_height="50dp" />
+                android:layout_height="50dp"
+                app:srcCompat="@mipmap/avatar" />
 
             <LinearLayout
-                android:orientation="vertical"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:layout_marginLeft="5dp"
                 android:layout_weight="1"
-                android:layout_marginLeft="5dp">
+                android:orientation="vertical">
 
                 <TextView
-                    android:text="Group name"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
                     android:id="@+id/group_groupName"
-                    android:textSize="24sp"
-                    android:textStyle="bold"
-                    android:textColor="?attr/colorControlNormal" />
-
-                <TextView
-                    android:text="about"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:text="Group name"
+                    android:textColor="?attr/colorControlNormal"
+                    android:textSize="24sp"
+                    android:textStyle="bold" />
+
+                <TextView
                     android:id="@+id/group_groupAbout"
-                    android:layout_marginLeft="20dp" />
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+                    android:text="about" />
             </LinearLayout>
+
+            <ImageView
+                android:id="@+id/show_hide"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:srcCompat="@drawable/ic_down" />
+
         </LinearLayout>
 
         <LinearLayout
-            android:orientation="vertical"
+            android:id="@+id/post_layout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="10dp">
+            android:layout_margin="10dp"
+            android:orientation="vertical">
 
             <EditText
+                android:id="@+id/group_writePost"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:inputType="textMultiLine"
-                android:ems="10"
                 android:layout_below="@+id/tool_bar"
                 android:layout_centerHorizontal="true"
                 android:layout_marginTop="0dp"
-                android:id="@+id/group_writePost"
-                android:hint="@string/post_something" />
+                android:ems="10"
+                android:hint="@string/post_something"
+                android:inputType="textMultiLine" />
 
             <LinearLayout
-                android:orientation="horizontal"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_weight="1">
+                android:layout_weight="1"
+                android:orientation="horizontal">
 
                 <ImageButton
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    app:srcCompat="@drawable/ic_request"
                     android:id="@+id/group_attachment"
-                    android:layout_weight="1" />
-
-                <ImageButton
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    app:srcCompat="@drawable/ic_file"
-                    android:id="@+id/group_upload"
-                    android:layout_weight="1" />
+                    android:layout_weight="1"
+                    app:srcCompat="@drawable/ic_request" />
 
                 <ImageButton
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    app:srcCompat="@drawable/ic_image"
                     android:id="@+id/group_photo"
-                    android:layout_weight="1" />
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    app:srcCompat="@drawable/ic_image" />
+
+                <ImageButton
+                    android:id="@+id/group_upload"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    app:srcCompat="@drawable/ic_file" />
 
                 <ImageButton
                     android:id="@+id/group_poll"
@@ -114,11 +124,11 @@
                     app:srcCompat="@drawable/ic_poll" />
 
                 <ImageButton
+                    android:id="@+id/group_post"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    app:srcCompat="@drawable/ic_send"
-                    android:id="@+id/group_post"
-                    android:layout_weight="1" />
+                    android:layout_weight="1"
+                    app:srcCompat="@drawable/ic_send" />
 
             </LinearLayout>
         </LinearLayout>

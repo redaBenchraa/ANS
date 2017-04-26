@@ -1,6 +1,7 @@
 package com.example.reda_benchraa.asn.Model;
 
 import android.graphics.Bitmap;
+import android.util.Base64;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -137,18 +138,20 @@ public class Post implements Serializable {
         // attributes(based on the attribute that are ready to test, in the api documentation)
 
         post.id = object.getInt("id");
-        post.content = object.getString("content");
+        post.content = object.getString("Content");
         if(!object.isNull("file")){
-            post.file = (byte[]) object.get("file");
+            post.file = Base64.decode(object.getString("File"), Base64.DEFAULT);
         }
         if(!object.isNull("Image")){
-            post.image = (byte[]) object.get("Image");
+            post.image = Base64.decode(object.getString("Image"), Base64.DEFAULT);
         }
         post.type = object.getInt("Type");
         post.postingDate = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").parse(object.getString("postingDate"));
         post.popularity = object.getInt("popularity");
-        post.account = Account.mapJson(object.getJSONObject("poster"));
-        post.group = Group.mapJson(object.getJSONObject("group"));
+        if(object.has("poster"))
+            post.account = Account.mapJson(object.getJSONObject("poster"));
+        if(object.has("group"))
+            post.group = Group.mapJson(object.getJSONObject("group"));
 
 
         // includes as mentioned in the api doc

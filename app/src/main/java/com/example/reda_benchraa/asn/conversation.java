@@ -7,6 +7,7 @@ import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.text.Layout;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -53,6 +54,7 @@ public class conversation extends AppCompatActivity {
     Context context;
     static SharedPreferences sharedpreferences;
     public static final String MyPREFERENCES = "Account" ;
+    View postLayout;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         final Map  map = new HashMap<>();
@@ -66,6 +68,7 @@ public class conversation extends AppCompatActivity {
         messagesLv = (ListView) findViewById(R.id.listView_message);
         sharedpreferences = getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
         account =  new Gson().fromJson(sharedpreferences.getString("myAccount", ""), Account.class);
+        postLayout = findViewById(R.id.post_layout);
         ((TextView) toolbar.findViewById(R.id.name)).setText(getResources().getString(R.string.conversation));
         context = this;
         LayoutInflater vi = (LayoutInflater) getApplicationContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
