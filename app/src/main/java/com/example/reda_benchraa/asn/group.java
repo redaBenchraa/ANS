@@ -12,6 +12,7 @@ import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
 import android.net.Uri;
+import android.os.PersistableBundle;
 import android.provider.MediaStore;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
@@ -22,6 +23,7 @@ import android.util.Base64;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageButton;
@@ -116,7 +118,7 @@ public class group extends AppCompatActivity implements View.OnClickListener{
         ((TextView) toolbar.findViewById(R.id.name)).setText(getResources().getString(R.string.group));
         context = this;
         postsLv = (ListView) findViewById(R.id.listView_post);
-        postsArrayAdapter = new postsArrayAdapter(getApplicationContext(), R.layout.notification_item_seen,posts);
+        postsArrayAdapter = new postsArrayAdapter(getApplicationContext(), R.layout.post_item,posts);
         postsLv.setAdapter(postsArrayAdapter);
         if(getIntent().hasExtra("group")){
             group = (Group) getIntent().getSerializableExtra("group");
@@ -344,14 +346,14 @@ public class group extends AppCompatActivity implements View.OnClickListener{
                     intent.setType("*/*");
                     intent.addCategory(Intent.CATEGORY_OPENABLE);
                     try {
-                        startActivityForResult(Intent.createChooser(intent, "Select a File to Upload"),FILE_INTENT);
+                        startActivityForResult(Intent.createChooser(intent, "Select a File to Upload"),FILE_REQUEST_INTENT);
                     } catch (android.content.ActivityNotFoundException ex) {
                         Toast.makeText(getApplicationContext(), "Please install a File Manager.", Toast.LENGTH_SHORT).show();
                     }
                 }
                 break;
             case R.id.group_poll :
-                startActivity(new Intent(getApplicationContext(),group_poll.class).putExtra("group",group));
+                startActivityForResult(new Intent(getApplicationContext(),group_poll.class).putExtra("group",group).putExtra("account",account).putExtra("content",content.getText().toString()),POLL_INTENT);
                 break;
             case R.id.group_post :
                 Map map = new HashMap<String, String>();
@@ -415,6 +417,21 @@ public class group extends AppCompatActivity implements View.OnClickListener{
                     toggleButtons(Color.argb(255,255,64,129));
                     break;
                 case POLL_INTENT:
+                    Post post = (Post) data.getSerializableExtra("post");
+                    if(post != null)
+                        posts.add(0,post);
+                    content.setText(data.getExtras().getString("content"));
+                    postsArrayAdapter.notifyDataSetChanged();
+                    postsLv.post(new Runnable() {
+                        @Override
+                        public void run() {
+                            postsLv.smoothScrollToPosition(0);
+                        }
+                    });
+                    imageAttachement = null;
+                    fileAttachement = null;
+                    fileRequestAttachement = null;
+                    toggleButtons(Color.argb(255,255,64,129));
                     break;
             }
         }
