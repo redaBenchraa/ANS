@@ -98,6 +98,14 @@ public class Group implements Serializable{
                 group.members.add(member);
             }
         }
+        if(object.has("requests")){
+            JSONArray membersArray = object.getJSONArray("requests");
+            for (int i=0;i<membersArray.length();i++){
+                JSONObject memberObject = (JSONObject) membersArray.get(i);
+                Account member = Account.mapJson(memberObject);
+                group.members.add(member);
+            }
+        }
 
         if(object.has("posts")){
             JSONArray postsArray = object.getJSONArray("posts");

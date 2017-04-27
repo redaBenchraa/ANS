@@ -50,6 +50,7 @@ public class ModifyGroup extends Fragment {
     // TODO: Rename and change types of parameters
     static int PICK_PHOTO_FOR_GROUP = 1;
     Group group;
+    String id;
     ImageView image;
     EditText name,about;
     Button save;
@@ -61,10 +62,10 @@ public class ModifyGroup extends Fragment {
         // Required empty public constructor
     }
 
-    public static Fragment newInstance(Group group) {
+    public static Fragment newInstance(String id) {
         ModifyGroup fragment = new ModifyGroup();
         Bundle args = new Bundle();
-        args.putSerializable("group",group);
+        args.putSerializable("group",id);
         fragment.setArguments(args);
         return fragment;
     }
@@ -91,12 +92,8 @@ public class ModifyGroup extends Fragment {
             image = (ImageView) v.findViewById(R.id.modifyGroup_image);
             save = (Button) v.findViewById(R.id.modifyGroup_save);
             if (getArguments() != null) {
-                group = (Group) getArguments().getSerializable(ARG_PARAM1);
-                name.setText(group.getName());
-                about.setText(group.getAbout());
-                if(group.getImage()!=null){
-                    image.setImageBitmap(BitmapFactory.decodeByteArray(group.getImage(),0,group.getImage().length));
-                }
+                id = getArguments().getString(ARG_PARAM1);
+                getGroup(getContext(), new HashMap<String, String>(), Utility.getProperty("API_URL",getContext())+"Groups/"+id);
                 image.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
@@ -170,13 +167,18 @@ public class ModifyGroup extends Fragment {
         };
         queue.add(sr);
     }
-    private void getGroup(final Context context,final HashMap<String, String> map,final String url) {
+    private void getGroup(final Context context,final Map<String, String> map,final String url) {
         RequestQueue queue = Volley.newRequestQueue(context);
         StringRequest sr = new StringRequest(Request.Method.GET,url, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
                 try {
                     group = Group.mapJson((JSONObject) new JSONArray(response).get(0));
+                    name.setText(group.getName());
+                    about.setText(group.getAbout());
+                    if(group.getImage()!=null) {
+                        image.setImageBitmap(BitmapFactory.decodeByteArray(group.getImage(), 0, group.getImage().length));
+                    }
                 } catch (JSONException | ParseException e) {
                     e.printStackTrace();
                 }
@@ -199,35 +201,4 @@ public class ModifyGroup extends Fragment {
         };
         queue.add(sr);
     }
-    /*@Override
-    public void onAttach(Context context) {
-        super.onAttach(context);
-        if (context instanceof OnFragmentInteractionListener) {
-            mListener = (OnFragmentInteractionListener) context;
-        } else {
-            throw new RuntimeException(context.toString()
-                    + " must implement OnFragmentInteractionListener");
-        }
-    }
-
-    @Override
-    public void onDetach() {
-        super.onDetach();
-        mListener = null;
-    }*/
-
-    /**
-     * This interface must be implemented by activities that contain this
-     * fragment to allow an interaction in this fragment to be communicated
-     * to the activity and potentially other fragments contained in that
-     * activity.
-     * <p>
-     * See the Android Training lesson <a href=
-     * "http://developer.android.com/training/basics/fragments/communicating.html"
-     * >Communicating with Other Fragments</a> for more information.
-     */
-    /*public interface OnFragmentInteractionListener {
-        // TODO: Update argument type and name
-        void onFragmentInteraction(Uri uri);
-    }*/
 }

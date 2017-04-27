@@ -41,7 +41,7 @@ public class InfoGroup extends AppCompatActivity {
     ListView admins,members;
     Context context;
     Group group;
-    int id = 1;
+    int id = 7;
     ListAdapter adminAdapter,memberAdapter;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -116,11 +116,5 @@ public class InfoGroup extends AppCompatActivity {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_login, menu);
         return true;
-    }
-
-    @Override
-    protected void onResume() {
-        super.onResume();
-        getGroup(context,new HashMap<String,String>(), Utility.getProperty("API_URL",context)+"Groups/"+id+"?include=owner,admins,members");
     }
 }
