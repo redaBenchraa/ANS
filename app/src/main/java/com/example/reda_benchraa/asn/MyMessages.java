@@ -13,8 +13,10 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ListAdapter;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.android.volley.AuthFailureError;
@@ -27,12 +29,14 @@ import com.android.volley.toolbox.Volley;
 import com.example.reda_benchraa.asn.Adapters.messageArrayAdapter;
 import com.example.reda_benchraa.asn.DAO.Utility;
 import com.example.reda_benchraa.asn.Model.Account;
+import com.example.reda_benchraa.asn.Model.Conversation;
 import com.google.gson.Gson;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.Serializable;
 import java.text.ParseException;
 import java.util.HashMap;
 import java.util.Map;
@@ -49,24 +53,27 @@ public class MyMessages extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_my_messages);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.tool_bar);
-        context = this;
+        toolbar = (Toolbar) findViewById(R.id.tool_bar);
         setSupportActionBar(toolbar);
-
+        TextView toolbar_name = (TextView) toolbar.findViewById(R.id.name);
+        toolbar_name.setText("Messages");
+        context = this;
+        sharedpreferences = getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
+                startActivity(new Intent(getApplicationContext(),NewMessage.class));
             }
         });
-        sharedpreferences = getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
-        Gson gson = new Gson();
-        String json = sharedpreferences.getString("myAccount", "");
-        account = gson.fromJson(json, Account.class);
+        account =  new Gson().fromJson(sharedpreferences.getString("myAccount", ""), Account.class);
         lastMessages = (ListView) findViewById(R.id.listView_myMessages);
-        Log.v("Controller",Utility.getProperty("API_URL",context)+"Accounts/"+account.getId()+"?include=conversations");
+        lastMessages.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                startActivity(new Intent(context, conversation.class).putExtra("conversation", account.getConversations().get(position)));
+            }
+        });
         getMessages(context,new HashMap<String,String>(),Utility.getProperty("API_URL",context)+"Accounts/"+account.getId()+"?include=conversations");
     }
 
@@ -103,6 +110,11 @@ public class MyMessages extends AppCompatActivity {
         }
         return super.onOptionsItemSelected(item);
     }
+    @Override
+    public void onResume(){
+        super.onResume();
+        getMessages(context,new HashMap<String,String>(),Utility.getProperty("API_URL",context)+"Accounts/"+account.getId()+"?include=conversations");
+    }
     public void getMessages(final Context context, final Map map, final String url){
         RequestQueue queue = Volley.newRequestQueue(context);
         StringRequest sr = new StringRequest(Request.Method.GET,url, new Response.Listener<String>() {
@@ -110,9 +122,8 @@ public class MyMessages extends AppCompatActivity {
             public void onResponse(String response) {
                 try {
                     account = Account.mapJson((JSONObject) new JSONArray(response).get(0));
-                    Toast.makeText(context,account.getConversations().size()+" Here", Toast.LENGTH_SHORT).show();
                     messagesAdapter = new messageArrayAdapter(context, R.layout.my_message_item, account.getConversations());
-                    lastMessages .setAdapter(messagesAdapter);
+                    lastMessages.setAdapter(messagesAdapter);
                 } catch (JSONException | ParseException e) {
                     e.printStackTrace();
                 }
@@ -135,5 +146,6 @@ public class MyMessages extends AppCompatActivity {
         };
         queue.add(sr);
     }
+
 
 }

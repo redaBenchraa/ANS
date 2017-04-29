@@ -17,7 +17,7 @@ import java.util.LinkedList;
  */
 
 
-public class Group implements Serializable{
+public class Group implements Serializable {
 
 
 //    Account owner;
@@ -32,9 +32,6 @@ public class Group implements Serializable{
 //    Group superGroup;
 //    PublishingSettings publishingSettings;
 //    enum PublishingSettings { ADMINS_ONLY, ALL_MEMBERS }
-
-
-
 
     long id;
     String name;
@@ -73,6 +70,7 @@ public class Group implements Serializable{
         }
         group.about = object.getString("About");
         //group.creationDate = new SimpleDateFormat("yyyy-MM-dd").parse(object.getString("createdDate"));
+        group.creationDate = new SimpleDateFormat("yyyy-MM-dd").parse(object.getString("creationDate"));
 
 
         // includes as mentioned in the api doc

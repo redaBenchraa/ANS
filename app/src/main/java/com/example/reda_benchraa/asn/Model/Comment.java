@@ -4,6 +4,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.Serializable;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -13,7 +14,7 @@ import java.util.LinkedList;
  * Created by Rabab Chahboune on 4/7/2017.
  */
 
-public class Comment {
+public class Comment implements Serializable {
 
     long id;
     String content;
@@ -34,13 +35,15 @@ public class Comment {
         // attributes(based on the attribute that are ready to test, in the api documentation)
 
         comment.id = object.getInt("id");
-        comment.content = object.getString("content");
-        comment.file = (byte[]) object.get("File");        // TODO check file and image type, is it really byte[] or Bitmap or Blob ? something else ?
+        comment.content = object.getString("Content");
+        if(!object.isNull("File")){
+            comment.file = (byte[]) object.get("File");
+        }
         comment.type = object.getInt("Type");
-        comment.postingDate = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").parse(object.getJSONObject("postingDate").getString("date"));
-        comment.popularity = object.getInt("popularity");
-        comment.account_id = object.getInt("Account");
-        comment.post_id = object.getInt("Post");
+        comment.postingDate = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").parse(object.getString("created_at"));
+        comment.popularity = object.getInt("Popularity");
+        comment.account_id = object.getInt("Account_id");
+        comment.post_id = object.getInt("Post_id");
 
         // TODO fix includes because they are not woking in the webservice
         // ErrorException in CommentService.php line 72:
