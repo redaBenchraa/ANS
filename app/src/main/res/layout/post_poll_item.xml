@@ -1,130 +1,30 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:layout_margin="10dp"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginLeft="10dp"
+    android:layout_marginRight="10dp"
+    android:orientation="vertical"
     android:weightSum="1"
-    android:background="@android:color/background_light">
+    app:layout_collapseMode="parallax">
 
-    <LinearLayout
-        android:orientation="horizontal"
+    <include
+        layout="@layout/post_item_header"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
-        <LinearLayout
-            android:orientation="horizontal"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="1">
-
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                app:srcCompat="@mipmap/ic_launcher"
-                android:id="@+id/post_poll_item_image" />
-
-            <LinearLayout
-                android:orientation="vertical"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
-
-                <LinearLayout
-                    android:orientation="horizontal"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
-
-                    <TextView
-                        android:text="groupName"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:id="@+id/post_poll_item_groupName"
-                        android:textSize="18sp"
-                        android:textColor="?attr/colorControlNormal"
-                        android:textStyle="bold"
-                        android:textAllCaps="true"
-                        android:layout_weight="1" />
-
-                    <TextView
-                        android:text="2 min ago"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:id="@+id/post_poll_item_date"
-                        android:layout_weight="0" />
-                </LinearLayout>
-
-                <TextView
-                    android:text="Publisher"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/post_poll_item_publisher"
-                    android:layout_marginBottom="10dp"
-                    android:layout_marginEnd="10dp"
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginRight="10dp"
-                    android:layout_marginStart="10dp"
-                    android:layout_marginTop="0dp"
-                    android:textColor="@android:color/background_dark" />
-            </LinearLayout>
-
-        </LinearLayout>
-
-    </LinearLayout>
-
-    <TextView
-        android:text="Lorem ipsum dolor sit amet, ne feugait prodesset eos. Nam ut sonet partem, omnes consul vituperatoribus."
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/post_poll_item_text" />
-
-    <LinearLayout
-        android:orientation="vertical"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp">
-
-        <LinearLayout
-            android:orientation="horizontal"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="1">
-
-        </LinearLayout>
-
-    </LinearLayout>
+        android:layout_height="wrap_content" />
 
     <ListView
+        android:id="@+id/listView_polls"
         android:layout_width="match_parent"
-        android:layout_height="190dp"
-        android:id="@+id/listView_polls" />
-    <View android:layout_width="fill_parent" android:layout_height="2dp" android:background="?android:attr/colorButtonNormal"/>
+        android:layout_height="150dp"
+        android:focusable="true"
+        android:focusableInTouchMode="true"
+        />
 
-    <LinearLayout
-        android:orientation="horizontal"
+    <include
+        layout="@layout/post_item_footer"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center">
-
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:srcCompat="@drawable/ic_upactivated"
-            android:id="@+id/imageView" />
-
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:srcCompat="@drawable/ic_down"
-            android:id="@+id/imageView7" />
-
-        <TextView
-            android:text="20"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/textView3"
-            android:gravity="center_vertical"
-            android:textColor="@android:color/background_dark" />
-
-    </LinearLayout>
+        android:layout_height="wrap_content" />
 
 </LinearLayout>

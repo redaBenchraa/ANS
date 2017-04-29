@@ -28,6 +28,46 @@ public class Poll implements Serializable {
 //
 //
 
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
+    }
+
+    public String getContent() {
+        return content;
+    }
+
+    public void setContent(String content) {
+        this.content = content;
+    }
+
+    public int getVote() {
+        return vote;
+    }
+
+    public void setVote(int vote) {
+        this.vote = vote;
+    }
+
+    public long getPost_id() {
+        return post_id;
+    }
+
+    public void setPost_id(long post_id) {
+        this.post_id = post_id;
+    }
+
+    public LinkedList<Long> getVoters_id() {
+        return voters_id;
+    }
+
+    public void setVoters_id(LinkedList<Long> voters_id) {
+        this.voters_id = voters_id;
+    }
+
     long id;
     String content;
     int vote;
