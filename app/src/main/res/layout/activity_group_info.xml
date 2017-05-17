@@ -6,12 +6,14 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context="com.example.reda_benchraa.asn.updateGroup">
+    tools:context="com.example.reda_benchraa.asn.GroupInfo">
+
     <include
         android:id="@+id/tool_bar"
-        layout="@layout/toolbar">
+        layout="@layout/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
 
-    </include>
     <FrameLayout
         android:id="@+id/content"
         android:layout_width="match_parent"
@@ -20,11 +22,25 @@
 
     </FrameLayout>
 
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/floatingEdit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="right"
+        android:layout_margin="10dp"
+        android:background="@color/colorPrimary"
+        android:clickable="true"
+        android:padding="5dp"
+        app:fabSize="mini"
+        app:srcCompat="@android:drawable/ic_menu_edit" />
     <android.support.design.widget.BottomNavigationView
         android:id="@+id/navigation"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/colorPrimary"
-        app:menu="@menu/bottom_nav_items" />
+        android:layout_gravity="bottom"
+        android:background="@color/almostWhile"
+        app:menu="@menu/group_nav_item" />
+
+
 
 </LinearLayout>

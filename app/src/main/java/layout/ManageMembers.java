@@ -91,9 +91,10 @@ public class ManageMembers extends Fragment {
             members.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                 @Override
                 public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                    Account account = (Account) parent.getAdapter().getItem(position);;
-                    /*Intent t = new Intent(view.getContext(),Profile.class);
-                    startActivityForResult(t,100);*/
+                    Account account = (Account) parent.getAdapter().getItem(position);
+                    Intent t = new Intent(view.getContext(),Profile.class);
+                    t.putExtra("account",account);
+                    startActivityForResult(t,100);
 
 
                 }
@@ -101,10 +102,6 @@ public class ManageMembers extends Fragment {
             members.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener(){
                 @Override
                 public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
-                    /*Etablissement e =(Etablissement) parent.getItemAtPosition(position);
-                    showNoticeDialog(e.getName());
-                    /*Intent i =new Intent(view.getContext(),MapsActivity.class);
-                    startActivity(i);*/
                     final Dialog dialog = new Dialog(getContext());
                     dialog.setContentView(R.layout.member_dialogue);
                     TextView text = (TextView) dialog.findViewById(R.id.memberDialogue_name);

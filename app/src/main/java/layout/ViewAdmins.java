@@ -20,7 +20,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
-import com.example.reda_benchraa.asn.Adapters.requestArrayAdapter;
+import com.example.reda_benchraa.asn.Adapters.accountArrayAdapter;
 import com.example.reda_benchraa.asn.DAO.Utility;
 import com.example.reda_benchraa.asn.Model.Account;
 import com.example.reda_benchraa.asn.Model.Group;
@@ -37,24 +37,25 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class ManageRequests extends Fragment {
+
+public class ViewAdmins extends Fragment {
     private static final String ARG_PARAM1 = "group";
-    private String id;
-    Group group;
-    ListView requests;
-    requestArrayAdapter requestsAdapter;
-    List<Account> requestList = new ArrayList<>();
+    private Group group;
+    String id;
+    ListView admins;
+    accountArrayAdapter adminsAdapter;
+    List<Account> adminList = new ArrayList<>();
 
-
-    public ManageRequests() {
+    public ViewAdmins() {
         // Required empty public constructor
     }
 
+
     // TODO: Rename and change types and number of parameters
-    public static ManageRequests newInstance(String id) {
-        ManageRequests fragment = new ManageRequests();
+    public static ViewAdmins newInstance(Group group) {
+        ViewAdmins fragment = new ViewAdmins();
         Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, id);
+        args.putSerializable(ARG_PARAM1, group);
         fragment.setArguments(args);
         return fragment;
     }
@@ -62,12 +63,7 @@ public class ManageRequests extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-    }
-    @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_manage_requests, container, false);
+
     }
 
     @Override
@@ -75,23 +71,31 @@ public class ManageRequests extends Fragment {
         super.onActivityCreated(savedInstanceState);
         View v = getView();
         if(v != null){
-            requests = (ListView) v.findViewById(R.id.listView_manageRequests);
-            if (getArguments() != null) {
-                id = getArguments().getString(ARG_PARAM1);
-                getGroup(getContext(), new HashMap<String, String>(), Utility.getProperty("API_URL", getContext()) + "Groups/" + id + "/?include=requests");
-            }
-            requests.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            admins = (ListView) v.findViewById(R.id.listView_viewAdmins);
+            admins.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                 @Override
                 public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                    Account account = (Account) parent.getAdapter().getItem(position);
+                    Account account = (Account) parent.getAdapter().getItem(position);;
                     Intent t = new Intent(view.getContext(),Profile.class);
                     t.putExtra("account",account);
                     startActivityForResult(t,100);
+
+
                 }
             });
+            if (getArguments() != null) {
+                group = (Group) getArguments().getSerializable(ARG_PARAM1);
+                id = Long.toString(group.getId());
+                if(group.getMembers().size()!=0){
+                    adminList.addAll(group.getAdmins());
+                    adminsAdapter = new accountArrayAdapter(getContext(), R.layout.account_item, adminList);
+                    admins.setAdapter(adminsAdapter);
+                }else{
+                    getGroup(getContext(), new HashMap<String, String>(), Utility.getProperty("API_URL",getContext())+"Groups/"+id+"/?include=admins");
+                }
+            }
         }
     }
-
     private void getGroup(final Context context, final Map<String, String> map, final String url) {
         RequestQueue queue = Volley.newRequestQueue(context);
         StringRequest sr = new StringRequest(Request.Method.GET,url, new Response.Listener<String>() {
@@ -99,10 +103,10 @@ public class ManageRequests extends Fragment {
             public void onResponse(String response) {
                 try {
                     group = Group.mapJson((JSONObject) new JSONArray(response).get(0));
-                    requestList.clear();
-                    requestList.addAll(group.getMembers());
-                    requestsAdapter = new requestArrayAdapter(getContext(), R.layout.account_item, requestList,Long.toString(group.getId()));
-                    requests.setAdapter(requestsAdapter);
+                    adminList.clear();
+                    adminList.addAll(group.getAdmins());
+                    adminsAdapter = new accountArrayAdapter(getContext(), R.layout.account_item, adminList);
+                    admins.setAdapter(adminsAdapter);
                 } catch (JSONException | ParseException e) {
                     e.printStackTrace();
                 }
@@ -125,4 +129,13 @@ public class ManageRequests extends Fragment {
         };
         queue.add(sr);
     }
+
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
+        // Inflate the layout for this fragment
+        return inflater.inflate(R.layout.fragment_view_admins, container, false);
+    }
+
+
 }

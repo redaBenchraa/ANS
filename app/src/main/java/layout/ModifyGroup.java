@@ -65,7 +65,7 @@ public class ModifyGroup extends Fragment {
     public static Fragment newInstance(String id) {
         ModifyGroup fragment = new ModifyGroup();
         Bundle args = new Bundle();
-        args.putSerializable("group",id);
+        args.putString(ARG_PARAM1,id);
         fragment.setArguments(args);
         return fragment;
     }

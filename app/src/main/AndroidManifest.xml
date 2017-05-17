@@ -14,9 +14,9 @@
         <activity
             android:name=".login"
             android:label="@string/app_name"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
-        <activity android:name=".SignUpActivity"></activity>
-        <activity android:name=".MyProfile"/>
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".SignUpActivity" />
+        <activity android:name=".MyProfile" />
         <activity android:name=".MyGroups" />
         <activity android:name=".home" />
         <activity
@@ -29,19 +29,23 @@
         <activity android:name=".NewMessage" />
         <activity android:name=".mynotification" />
         <activity android:name=".InfoGroup">
+
+        </activity>
+        <activity android:name=".post" />
+        <activity android:name=".conversation" />
+        <activity
+            android:name=".updateGroup"
+            android:label="@string/title_activity_update_group" />
+        <activity android:name=".add_contact_message" />
+        <activity
+            android:name=".GroupInfo"
+            android:label="@string/title_activity_group_info">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".post"/>
-        <activity android:name=".conversation"/>
-        <activity
-            android:name=".updateGroup"
-            android:label="@string/title_activity_update_group"/>
-        <activity android:name=".add_contact_message"></activity>
     </application>
-
 
 </manifest>

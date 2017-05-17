@@ -24,23 +24,24 @@ import layout.ModifyGroup;
 
 public class updateGroup extends AppCompatActivity implements Serializable {
 
-    private TextView mTextMessage,toolbarMessage;
+    private TextView toolbarMessage;
     Group group;
     Toolbar toolbar;
+    Fragment selectedFragment = null;
+
 
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
             = new BottomNavigationView.OnNavigationItemSelectedListener() {
 
         @Override
         public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-            Fragment selectedFragment = null;
             if (selectedFragment == null) {
                 selectedFragment = ModifyGroup.newInstance(Long.toString(group.getId()));
                 getSupportFragmentManager().beginTransaction().replace(R.id.content, selectedFragment).addToBackStack(null).commit();
             }
             switch (item.getItemId()) {
                 case R.id.menu_modify:
-                    toolbarMessage.setText("Modify");
+                    toolbarMessage.setText("General Info");
                     selectedFragment = ModifyGroup.newInstance(Long.toString(group.getId()));
                     getSupportFragmentManager().beginTransaction().replace(R.id.content, selectedFragment).addToBackStack(null).commit();
                     return true;
@@ -69,12 +70,14 @@ public class updateGroup extends AppCompatActivity implements Serializable {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_update_group);
-        mTextMessage = (TextView) findViewById(R.id.message);
         toolbar = (Toolbar) findViewById(R.id.tool_bar);
         setSupportActionBar(toolbar);
         toolbarMessage = (TextView) toolbar.findViewById(R.id.name);
         if(getIntent().hasExtra("group")){
                 group = (Group) getIntent().getSerializableExtra("group");
+                toolbarMessage.setText("General Info");
+                selectedFragment = ModifyGroup.newInstance(Long.toString(group.getId()));
+                getSupportFragmentManager().beginTransaction().replace(R.id.content, selectedFragment).addToBackStack(null).commit();
                 BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigation);
                 navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
         }
@@ -83,7 +86,7 @@ public class updateGroup extends AppCompatActivity implements Serializable {
 
     @Override
     public void onBackPressed() {
-        Intent i = new Intent(getApplicationContext(),InfoGroup.class);
+        Intent i = new Intent(getApplicationContext(),GroupInfo.class);
         startActivity(i);
     }
 }

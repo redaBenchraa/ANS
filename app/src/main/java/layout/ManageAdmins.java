@@ -2,6 +2,7 @@ package layout;
 
 import android.app.Dialog;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -25,6 +26,7 @@ import com.example.reda_benchraa.asn.Adapters.accountArrayAdapter;
 import com.example.reda_benchraa.asn.DAO.Utility;
 import com.example.reda_benchraa.asn.Model.Account;
 import com.example.reda_benchraa.asn.Model.Group;
+import com.example.reda_benchraa.asn.Profile;
 import com.example.reda_benchraa.asn.R;
 
 import org.json.JSONArray;
@@ -88,8 +90,9 @@ public class ManageAdmins extends Fragment {
                 public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                     Account account = (Account) parent.getAdapter().getItem(position);;
                     Toast.makeText(getContext(), account.getEmail(), Toast.LENGTH_SHORT).show();
-                    /*Intent t = new Intent(view.getContext(),Profile.class);
-                    startActivityForResult(t,100);*/
+                    Intent t = new Intent(view.getContext(),Profile.class);
+                    t.putExtra("account",account);
+                    startActivityForResult(t,100);
 
 
                 }

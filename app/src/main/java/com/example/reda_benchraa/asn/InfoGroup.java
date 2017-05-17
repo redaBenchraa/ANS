@@ -77,7 +77,6 @@ public class InfoGroup extends AppCompatActivity {
             public void onResponse(String response) {
                 try {
                     group = Group.mapJson((JSONObject) new JSONArray(response).get(0));
-                    Toast.makeText(context, group.getName(), Toast.LENGTH_LONG).show();
                     name.setText(group.getName());
                     about.setText(group.getAbout());
                     if(group.getImage()!=null){
