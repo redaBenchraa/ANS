@@ -2,6 +2,7 @@ package com.example.reda_benchraa.asn;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
@@ -9,6 +10,7 @@ import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -46,6 +48,26 @@ public class Profile extends AppCompatActivity {
         if(account.getProfilePicture() != null){
             image.setImageBitmap(BitmapFactory.decodeByteArray(account.getProfilePicture(),0,account.getProfilePicture().length));
         }
+    }
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int id = item.getItemId();
+        switch (id){
+            case R.id.action_home:startActivity(new Intent(getApplicationContext(),home.class));break;
+            case R.id.action_myProfile:startActivity(new Intent(getApplicationContext(),MyProfile.class));break;
+            case R.id.action_myGroups:startActivity(new Intent(getApplicationContext(),MyGroups.class));break;
+            case R.id.action_myMessages:startActivity(new Intent(getApplicationContext(),MyMessages.class));break;
+            case R.id.action_myNotifications:startActivity(new Intent(getApplicationContext(),mynotification.class));break;
+            case R.id.action_search:startActivity(new Intent(getApplicationContext(),search.class));break;
+            case R.id.action_signout:
+                SharedPreferences prefs = getSharedPreferences("PREFERENCE", MODE_PRIVATE);
+                SharedPreferences.Editor editor = prefs.edit();
+                editor.clear();
+                editor.apply();
+                startActivity(new Intent(getApplicationContext(),login.class));
+                break;
+        }
+        return super.onOptionsItemSelected(item);
     }
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {

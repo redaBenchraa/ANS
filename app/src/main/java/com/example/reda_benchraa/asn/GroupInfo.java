@@ -11,6 +11,7 @@ import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
@@ -100,6 +101,11 @@ public class GroupInfo extends AppCompatActivity {
         fab = (FloatingActionButton) findViewById(R.id.floatingEdit);
         fab.hide();
         toolbarMessage = (TextView) toolbar.findViewById(R.id.name);
+        ((TextView) toolbar.findViewById(R.id.name)).setText("Group info");
+        sharedpreferences = getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
+        Gson gson = new Gson();
+        String json = sharedpreferences.getString("myAccount", "");
+        account = gson.fromJson(json, Account.class);
 
 
         if(getIntent().hasExtra("group")){
@@ -137,20 +143,7 @@ public class GroupInfo extends AppCompatActivity {
             public void onResponse(String response) {
                 try {
                     group = Group.mapJson((JSONObject) new JSONArray(response).get(0));
-                    //test if the person logged in is an owner or admin to give it the possibility to update
 
-                    //setting an account to test with it
-                    account = group.getAdmins().get(0);
-                    sharedpreferences = getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
-                    SharedPreferences.Editor editor = sharedpreferences.edit();
-                    Gson gson = new Gson();
-                    String json = gson.toJson(account);
-                    editor.putString("myAccount", json);
-                    editor.apply();
-                    //this should be in onCreate it is here only for testing purposes
-                    gson = new Gson();
-                    json = sharedpreferences.getString("myAccount", "");
-                    account = gson.fromJson(json, Account.class);
 
                     if(isAdmin(account,group.getOwner(),group.getAdmins())){
                         fab.show();
@@ -201,5 +194,30 @@ public class GroupInfo extends AppCompatActivity {
         return false;
     }
 
-    //ON BACK CLICK USING public ComponentName getCallingActivity()//
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int id = item.getItemId();
+        switch (id){
+            case R.id.action_home:startActivity(new Intent(getApplicationContext(),home.class));break;
+            case R.id.action_myProfile:startActivity(new Intent(getApplicationContext(),MyProfile.class));break;
+            case R.id.action_myGroups:startActivity(new Intent(getApplicationContext(),MyGroups.class));break;
+            case R.id.action_myMessages:startActivity(new Intent(getApplicationContext(),MyMessages.class));break;
+            case R.id.action_myNotifications:startActivity(new Intent(getApplicationContext(),mynotification.class));break;
+            case R.id.action_search:startActivity(new Intent(getApplicationContext(),search.class));break;
+            case R.id.action_signout:
+                SharedPreferences prefs = getSharedPreferences("PREFERENCE", MODE_PRIVATE);
+                SharedPreferences.Editor editor = prefs.edit();
+                editor.clear();
+                editor.apply();
+                startActivity(new Intent(getApplicationContext(),login.class));
+                break;
+        }
+        return super.onOptionsItemSelected(item);
+    }
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.menu_login, menu);
+        return true;
+    }
 }

@@ -28,19 +28,9 @@
         android:title="@string/myNotifications"
         app:showAsAction="never" />
     <item
-        android:id="@+id/action_myContacts"
+        android:id="@+id/action_search"
         android:orderInCategory="100"
-        android:title="@string/myContacts"
-        app:showAsAction="never" />
-    <item
-        android:id="@+id/action_settings"
-        android:orderInCategory="100"
-        android:title="@string/settings"
-        app:showAsAction="never" />
-    <item
-        android:id="@+id/action_help"
-        android:orderInCategory="100"
-        android:title="@string/help"
+        android:title="@string/search"
         app:showAsAction="never" />
     <item
         android:id="@+id/action_signout"
