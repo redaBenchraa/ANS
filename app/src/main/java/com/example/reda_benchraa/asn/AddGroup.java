@@ -16,6 +16,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.android.volley.AuthFailureError;
@@ -42,6 +43,7 @@ public class AddGroup extends AppCompatActivity {
     static int PICK_PHOTO_FOR_AVATAR = 1;
     EditText name,about;
     ImageView image;
+    TextView nameTv;
     Button add;
     private Toolbar toolbar;
     Account account;
@@ -56,16 +58,18 @@ public class AddGroup extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         toolbar = (Toolbar) findViewById(R.id.tool_bar);
         setSupportActionBar(toolbar);
-        setContentView(R.layout.activity_add_group);
+        //nameTv = (TextView) toolbar.findViewById(R.id.name);
         name = (EditText) findViewById(R.id.addGroup_name);
         about = (EditText) findViewById(R.id.addGroup_about);
         image = (ImageView) findViewById(R.id.addGroup_image);
         add = (Button) findViewById(R.id.addGroup_addButton);
+        //nameTv.setText("Add Group");
+
         context = this;
 
-        Gson gson = new Gson();
+        /*Gson gson = new Gson();
         String json = sharedpreferences.getString("myAccount", "");
-        account = gson.fromJson(json, Account.class);
+        account = gson.fromJson(json, Account.class);*/
         image.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
