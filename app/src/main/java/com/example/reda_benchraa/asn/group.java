@@ -25,6 +25,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
@@ -118,7 +119,7 @@ public class group extends AppCompatActivity implements View.OnClickListener{
         ((TextView) toolbar.findViewById(R.id.name)).setText(getResources().getString(R.string.group));
         context = this;
         postsLv = (ListView) findViewById(R.id.listView_post);
-        postsArrayAdapter = new postsArrayAdapter(getApplicationContext(), R.layout.post_item,posts);
+        postsArrayAdapter = new postsArrayAdapter(getApplicationContext(), R.layout.post_item,posts,account);
         postsLv.setAdapter(postsArrayAdapter);
         if(getIntent().hasExtra("group")){
             group = (Group) getIntent().getSerializableExtra("group");

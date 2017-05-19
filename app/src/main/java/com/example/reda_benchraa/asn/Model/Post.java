@@ -2,6 +2,7 @@ package com.example.reda_benchraa.asn.Model;
 
 import android.graphics.Bitmap;
 import android.util.Base64;
+import android.util.Log;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -134,6 +135,12 @@ public class Post implements Serializable {
 
     public static Post mapJson(JSONObject object) throws JSONException, ParseException {
         Post post = new Post();
+        post.comments = new LinkedList<>();
+
+        post.polls = new LinkedList<>();
+
+        post.reactions = new LinkedList<>();
+
 
         // attributes(based on the attribute that are ready to test, in the api documentation)
 
@@ -181,8 +188,9 @@ public class Post implements Serializable {
             post.account = Account.mapJson(accountObject);
         }
         if(object.has("reactions")){
-            // TODO should the reaction JSONObject have post_id or comment_id ?
             JSONArray reactionsArray = object.getJSONArray("reactions");
+            Log.v("Reactions","111");
+            Log.v("Reaction",object.getJSONArray("reactions").toString());
             for (int i=0;i<reactionsArray.length();i++){
                 JSONObject reactionObject = (JSONObject) reactionsArray.get(i);
                 Reaction reaction = Reaction.mapJson(reactionObject);
@@ -193,9 +201,6 @@ public class Post implements Serializable {
 
         return post;
     }
-
-
-
     public Post() {
     }
 

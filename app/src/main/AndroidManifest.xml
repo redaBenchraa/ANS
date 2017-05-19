@@ -14,8 +14,8 @@
         <activity
             android:name=".login"
             android:label="@string/app_name"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
-        <activity android:name=".SignUpActivity"></activity>
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".SignUpActivity" />
         <activity android:name=".MyProfile">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -34,9 +34,10 @@
         <activity android:name=".MyMessages" />
         <activity android:name=".NewMessage" />
         <activity android:name=".mynotification" />
-        <activity android:name=".post"></activity>
-        <activity android:name=".conversation"></activity>
-        <activity android:name=".add_contact_message"></activity>
+        <activity android:name=".post" />
+        <activity android:name=".conversation" />
+        <activity android:name=".add_contact_message" />
+        <activity android:name=".search"></activity>
     </application>
 
 </manifest>
