@@ -37,7 +37,21 @@
         <activity android:name=".post" />
         <activity android:name=".conversation" />
         <activity android:name=".add_contact_message" />
-        <activity android:name=".search"></activity>
+        <activity android:name=".search"/>
+        <activity android:name=".InfoGroup">
+        </activity>
+        <activity
+            android:name=".updateGroup"
+            android:label="@string/title_activity_update_group" />
+        <activity
+            android:name=".GroupInfo"
+            android:label="@string/title_activity_group_info">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
     </application>
 
 </manifest>

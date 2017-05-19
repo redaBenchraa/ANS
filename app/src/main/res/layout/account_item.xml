@@ -11,17 +11,17 @@
         android:gravity="center">
 
         <ImageView
+            android:id="@+id/account_item_image"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:srcCompat="@mipmap/avatar"
-            android:id="@+id/imageView4" />
+            app:srcCompat="@mipmap/avatar" />
 
         <TextView
-            android:text="TextView"
+            android:id="@+id/account_item_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/textView9"
             android:layout_weight="1"
-            android:padding="5dp" />
+            android:padding="5dp"
+            android:text="TextView" />
     </LinearLayout>
 </LinearLayout>

@@ -8,12 +8,15 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 import java.io.Serializable;
+import java.sql.Blob;
+import java.io.Serializable;
 import java.text.ParseException;
 import java.util.LinkedList;
 
 /**
  * Created by Rabab Chahboune on 4/7/2017.
  */
+
 
 public class Account implements Serializable,Comparable<Account>{
     long id;

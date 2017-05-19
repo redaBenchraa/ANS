@@ -33,9 +33,12 @@
     <string name="help">HELP</string>
     <string name="signout">SIGN OUT</string>
     <!--info group-->
+    <string name="info">General</string>
     <string name="owner">Group owner</string>
     <string name="admins">Group admins</string>
     <string name="members">Group members</string>
+    <string name="groups">Groups</string>
+    <string name="addGroup">Add Group</string>
     <!-- Post -->
     <string name="post">Post</string>
     <string name="preview">Preview</string>
@@ -48,4 +51,24 @@
     <string name="addPoll">Add a poll</string>
     <string name="comment">Comment ...</string>
     <string name="title_activity_conversation">conversation</string>
+    <string name="title_activity_update_group">updateGroup</string>
+    <string name="title_home">Home</string>
+    <string name="title_dashboard">Dashboard</string>
+    <string name="title_notifications">Notifications</string>
+    <!--modify group-->
+    <string name="modify">Modify</string>
+    <string name="manageAdmins">Admins</string>
+    <string name="manageMembers">Members</string>
+    <string name="manageRequest">Requests</string>
+    <string name="about">About</string>
+    <string name="delete">Delete member</string>
+    <string name="makeAdmin">Add as admin</string>
+    <string name="removeAdmin">Remove admin</string>
+
+    <string name="title_activity_group_info">I am here</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+
 </resources>
