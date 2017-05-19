@@ -28,9 +28,7 @@
         <activity android:name=".MyMessages" />
         <activity android:name=".NewMessage" />
         <activity android:name=".mynotification" />
-        <activity android:name=".InfoGroup">
-
-        </activity>
+        <activity android:name=".InfoGroup"></activity>
         <activity android:name=".post" />
         <activity android:name=".conversation" />
         <activity
@@ -46,6 +44,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".AddGroup"></activity>
     </application>
 
 </manifest>

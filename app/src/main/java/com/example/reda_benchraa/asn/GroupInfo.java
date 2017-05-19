@@ -202,4 +202,9 @@ public class GroupInfo extends AppCompatActivity {
     }
 
     //ON BACK CLICK USING public ComponentName getCallingActivity()//
+    @Override
+    public void onBackPressed() {
+        Intent i = new Intent(getApplicationContext(),Group.class);
+        startActivity(i);
+    }
 }

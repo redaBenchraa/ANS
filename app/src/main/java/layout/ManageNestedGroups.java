@@ -10,6 +10,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
+import android.widget.Button;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -21,6 +22,7 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.reda_benchraa.asn.Adapters.deleteGroupArrayAdapter;
+import com.example.reda_benchraa.asn.AddGroup;
 import com.example.reda_benchraa.asn.DAO.Utility;
 import com.example.reda_benchraa.asn.Model.Group;
 import com.example.reda_benchraa.asn.R;
@@ -41,6 +43,7 @@ public class ManageNestedGroups extends Fragment {
     private Group group;
     String id;
     ListView groups;
+    Button add;
     deleteGroupArrayAdapter groupsAdapter;
     List<Group> groupList = new ArrayList<>();
 
@@ -71,6 +74,7 @@ public class ManageNestedGroups extends Fragment {
             View v = getView();
             if (v != null) {
                 groups = (ListView) v.findViewById(R.id.listView_manageNestedGRoups);
+                add = (Button) v.findViewById(R.id.addGroup);
                 groups.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                     @Override
                     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
@@ -106,6 +110,14 @@ public class ManageNestedGroups extends Fragment {
                         groupsAdapter = new deleteGroupArrayAdapter(getContext(), R.layout.remove_group_item, groupList);
                         groups.setAdapter(groupsAdapter);
                     }
+                    add.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            Intent t = new Intent(v.getContext(), AddGroup.class);
+                            t.putExtra("group",group);
+                            startActivityForResult(t,100);
+                        }
+                    });
                 } catch (JSONException | ParseException e) {
                     e.printStackTrace();
                 }
