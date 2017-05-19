@@ -74,22 +74,16 @@ public class MyGroups extends AppCompatActivity {
         getMenuInflater().inflate(R.menu.menu_login, menu);
         return true;
     }
+    @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
-
-        //noinspection SimplifiableIfStatement
         switch (id){
             case R.id.action_home:startActivity(new Intent(getApplicationContext(),home.class));break;
             case R.id.action_myProfile:startActivity(new Intent(getApplicationContext(),MyProfile.class));break;
             case R.id.action_myGroups:startActivity(new Intent(getApplicationContext(),MyGroups.class));break;
             case R.id.action_myMessages:startActivity(new Intent(getApplicationContext(),MyMessages.class));break;
             case R.id.action_myNotifications:startActivity(new Intent(getApplicationContext(),mynotification.class));break;
-            case R.id.action_myContacts:startActivity(new Intent(getApplicationContext(),Contacts.class));break;
-            case R.id.action_settings:startActivity(new Intent(getApplicationContext(),MyProfile.class));break;
-            case R.id.action_help:startActivity(new Intent(getApplicationContext(),MyProfile.class));break;
+            case R.id.action_search:startActivity(new Intent(getApplicationContext(),search.class));break;
             case R.id.action_signout:
                 SharedPreferences prefs = getSharedPreferences("PREFERENCE", MODE_PRIVATE);
                 SharedPreferences.Editor editor = prefs.edit();
@@ -131,5 +125,6 @@ public class MyGroups extends AppCompatActivity {
         };
         queue.add(sr);
     }
+
 
 }

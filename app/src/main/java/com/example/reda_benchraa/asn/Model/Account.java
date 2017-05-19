@@ -2,6 +2,8 @@ package com.example.reda_benchraa.asn.Model;
 
 import android.support.annotation.NonNull;
 import android.util.Base64;
+import android.util.Log;
+
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;

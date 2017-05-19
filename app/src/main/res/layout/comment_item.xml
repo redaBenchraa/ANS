@@ -7,48 +7,58 @@
     android:layout_margin="10dp">
 
     <TextView
-        android:text="Publisher"
+        android:id="@+id/textView10"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/textView10"
+        android:text="TextView"
+        android:textColor="@color/grey"
         android:textSize="18sp"
-        android:textStyle="normal|bold"
-        android:textColor="?attr/colorControlNormal" />
+        android:textStyle="bold" />
 
     <TextView
-        android:text="TextView"
+        android:id="@+id/textView11"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/textView11"
-        android:padding="10dp" />
+        android:padding="10dp"
+        android:text="TextView"
+        android:textColor="@color/grey"
+        android:textSize="16sp" />
 
-    <View android:layout_width="fill_parent" android:layout_height="2dp" android:background="?android:attr/colorButtonNormal"/>
+    <View
+        android:layout_width="wrap_content"
+        android:layout_height="2dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:background="@color/light_grey" />
 
     <LinearLayout
-        android:orientation="horizontal"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:gravity="center">
+        android:gravity="center"
+        android:orientation="horizontal">
 
-        <ImageView
-            android:layout_width="wrap_content"
+        <Button
+            android:id="@+id/up"
+            android:layout_width="74dp"
             android:layout_height="wrap_content"
-            app:srcCompat="@drawable/ic_upactivated"
-            android:id="@+id/imageView" />
-
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:srcCompat="@drawable/ic_down"
-            android:id="@+id/imageView7" />
+            android:duplicateParentState="true"
+            android:text="up" />
 
         <TextView
-            android:text="20"
+            android:id="@+id/textView3"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/textView3"
             android:gravity="center_vertical"
-            android:textColor="@android:color/background_dark" />
+            android:text="10"
+            android:textColor="@android:color/background_dark"
+            android:textSize="20sp" />
+
+        <Button
+            android:id="@+id/down"
+            android:layout_width="74dp"
+            android:layout_height="wrap_content"
+            android:duplicateParentState="true"
+            android:text="down" />
 
     </LinearLayout>
 

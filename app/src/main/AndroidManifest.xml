@@ -16,7 +16,8 @@
             android:label="@string/app_name"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".SignUpActivity" />
-        <activity android:name=".MyProfile" />
+        <activity android:name=".MyProfile">
+        </activity>
         <activity android:name=".MyGroups" />
         <activity android:name=".home" />
         <activity
@@ -31,10 +32,11 @@
         <activity android:name=".InfoGroup"></activity>
         <activity android:name=".post" />
         <activity android:name=".conversation" />
+        <activity android:name=".add_contact_message" />
+        <activity android:name=".search"/>
         <activity
             android:name=".updateGroup"
             android:label="@string/title_activity_update_group" />
-        <activity android:name=".add_contact_message" />
         <activity
             android:name=".GroupInfo"
             android:label="@string/title_activity_group_info">

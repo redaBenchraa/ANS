@@ -17,6 +17,7 @@
     <string name="email">Enter your email</string>
     <string name="password">Enter your password</string>
     <string name="signin">Sign in</string>
+    <string name="search">Search</string>
     <!-- my profile -->
     <string name="save">Save</string>
     <string name="show">Show</string>

@@ -125,9 +125,7 @@ public class NewMessage extends AppCompatActivity {
             case R.id.action_myGroups:startActivity(new Intent(getApplicationContext(),MyGroups.class));break;
             case R.id.action_myMessages:startActivity(new Intent(getApplicationContext(),MyMessages.class));break;
             case R.id.action_myNotifications:startActivity(new Intent(getApplicationContext(),mynotification.class));break;
-            case R.id.action_myContacts:startActivity(new Intent(getApplicationContext(),Contacts.class));break;
-            case R.id.action_settings:startActivity(new Intent(getApplicationContext(),MyProfile.class));break;
-            case R.id.action_help:startActivity(new Intent(getApplicationContext(),MyProfile.class));break;
+            case R.id.action_search:startActivity(new Intent(getApplicationContext(),search.class));break;
             case R.id.action_signout:
                 SharedPreferences prefs = getSharedPreferences("PREFERENCE", MODE_PRIVATE);
                 SharedPreferences.Editor editor = prefs.edit();
@@ -305,4 +303,5 @@ public class NewMessage extends AppCompatActivity {
         };
         queue.add(sr);
     }
+
 }

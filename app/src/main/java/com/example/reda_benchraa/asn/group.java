@@ -25,6 +25,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
@@ -118,7 +119,7 @@ public class group extends AppCompatActivity implements View.OnClickListener{
         ((TextView) toolbar.findViewById(R.id.name)).setText(getResources().getString(R.string.group));
         context = this;
         postsLv = (ListView) findViewById(R.id.listView_post);
-        postsArrayAdapter = new postsArrayAdapter(getApplicationContext(), R.layout.post_item,posts);
+        postsArrayAdapter = new postsArrayAdapter(getApplicationContext(), R.layout.post_item,posts,account);
         postsLv.setAdapter(postsArrayAdapter);
         if(getIntent().hasExtra("group")){
             group = (Group) getIntent().getSerializableExtra("group");
@@ -170,28 +171,23 @@ public class group extends AppCompatActivity implements View.OnClickListener{
 
             }
         });
+        image.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getApplicationContext(),GroupInfo.class).putExtra("group",group));
+            }
+        });
     }
     @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.menu_login, menu);
-        return true;
-    }
     public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
-
-        //noinspection SimplifiableIfStatement
         switch (id){
             case R.id.action_home:startActivity(new Intent(getApplicationContext(),home.class));break;
             case R.id.action_myProfile:startActivity(new Intent(getApplicationContext(),MyProfile.class));break;
             case R.id.action_myGroups:startActivity(new Intent(getApplicationContext(),MyGroups.class));break;
             case R.id.action_myMessages:startActivity(new Intent(getApplicationContext(),MyMessages.class));break;
             case R.id.action_myNotifications:startActivity(new Intent(getApplicationContext(),mynotification.class));break;
-            case R.id.action_myContacts:startActivity(new Intent(getApplicationContext(),Contacts.class));break;
-            case R.id.action_settings:startActivity(new Intent(getApplicationContext(),MyProfile.class));break;
-            case R.id.action_help:startActivity(new Intent(getApplicationContext(),MyProfile.class));break;
+            case R.id.action_search:startActivity(new Intent(getApplicationContext(),search.class));break;
             case R.id.action_signout:
                 SharedPreferences prefs = getSharedPreferences("PREFERENCE", MODE_PRIVATE);
                 SharedPreferences.Editor editor = prefs.edit();
@@ -507,5 +503,11 @@ public class group extends AppCompatActivity implements View.OnClickListener{
         if(fileRequestAttachement != null)
             return 3;
         return 0;
+    }
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.menu_login, menu);
+        return true;
     }
 }
