@@ -19,5 +19,12 @@
         android:textColor="@android:color/background_light"
         />
 
+    <item
+        android:id="@+id/menu_groups"
+        android:title="@string/groups"
+        android:icon="@drawable/ic_nested_groups"
+        android:textColor="@android:color/background_light"
+        />
+
 
 </menu>

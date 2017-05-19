@@ -37,6 +37,8 @@
     <string name="owner">Group owner</string>
     <string name="admins">Group admins</string>
     <string name="members">Group members</string>
+    <string name="groups">Groups</string>
+    <string name="addGroup">Add Group</string>
     <!-- Post -->
     <string name="post">Post</string>
     <string name="preview">Preview</string>
@@ -65,6 +67,8 @@
 
     <string name="title_activity_group_info">I am here</string>
 
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 
 
 </resources>

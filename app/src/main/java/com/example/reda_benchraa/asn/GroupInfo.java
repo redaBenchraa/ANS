@@ -40,6 +40,7 @@ import java.util.Map;
 import layout.ViewAdmins;
 import layout.ViewInfoGroup;
 import layout.ViewMembers;
+import layout.ViewNestedGroups;
 
 public class GroupInfo extends AppCompatActivity {
 
@@ -77,6 +78,11 @@ public class GroupInfo extends AppCompatActivity {
                     selectedFragment = ViewAdmins.newInstance(group);
                     getSupportFragmentManager().beginTransaction().replace(R.id.content, selectedFragment).addToBackStack(null).commit();
                     return true;
+                case R.id.menu_groups:
+                    toolbarMessage.setText("Nested Groups");
+                    selectedFragment = ViewNestedGroups.newInstance(group);
+                    getSupportFragmentManager().beginTransaction().replace(R.id.content, selectedFragment).addToBackStack(null).commit();
+                    return true;
             }
             return false;
         }
@@ -102,7 +108,7 @@ public class GroupInfo extends AppCompatActivity {
         }else{
             //testing
             group = new Group();
-            group.setId(10);
+            group.setId(2);
         }
         if(group.getAdmins().isEmpty() && group.getOwner() == null){
             getGroup(this,new HashMap<String,String>(), Utility.getProperty("API_URL",this)+"Groups/"+group.getId()+"?include=owner,admins,members");

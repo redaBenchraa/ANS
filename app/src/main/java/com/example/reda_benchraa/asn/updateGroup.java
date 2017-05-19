@@ -19,6 +19,7 @@ import java.util.HashMap;
 
 import layout.ManageAdmins;
 import layout.ManageMembers;
+import layout.ManageNestedGroups;
 import layout.ManageRequests;
 import layout.ModifyGroup;
 
@@ -55,6 +56,11 @@ public class updateGroup extends AppCompatActivity implements Serializable {
                     selectedFragment = ManageMembers.newInstance(Long.toString(group.getId()));
                     getSupportFragmentManager().beginTransaction().replace(R.id.content, selectedFragment).addToBackStack(null).commit();
                     return true;
+                case R.id.menu_groups:
+                    toolbarMessage.setText("Nested Groups");
+                    selectedFragment = ManageNestedGroups.newInstance(group);
+                    getSupportFragmentManager().beginTransaction().replace(R.id.content, selectedFragment).addToBackStack(null).commit();
+                    return true;
                 case R.id.menu_request:
                     toolbarMessage.setText("Requests");
                     selectedFragment = ManageRequests.newInstance(Long.toString(group.getId()));
@@ -73,6 +79,7 @@ public class updateGroup extends AppCompatActivity implements Serializable {
         toolbar = (Toolbar) findViewById(R.id.tool_bar);
         setSupportActionBar(toolbar);
         toolbarMessage = (TextView) toolbar.findViewById(R.id.name);
+
         if(getIntent().hasExtra("group")){
                 group = (Group) getIntent().getSerializableExtra("group");
                 toolbarMessage.setText("General Info");

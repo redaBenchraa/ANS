@@ -43,6 +43,7 @@ public class Group implements Serializable {
     LinkedList<Post> posts = new LinkedList<>();
     LinkedList<Account> admins = new LinkedList<>();
     LinkedList<Account> members = new LinkedList<>();
+    LinkedList<Group> subGroups = new LinkedList<>();
     Account owner;
 
 
@@ -111,6 +112,15 @@ public class Group implements Serializable {
                 JSONObject postObject = (JSONObject) postsArray.get(i);
                 Post post = Post.mapJson(postObject);
                 group.posts.add(post);
+            }
+        }
+
+        if(object.has("subs")){
+            JSONArray groupsArray = object.getJSONArray("subs");
+            for (int i=0;i<groupsArray.length();i++) {
+                JSONObject groupObject = (JSONObject) groupsArray.get(i);
+                Group g = Group.mapJson(groupObject);
+                group.subGroups.add(g);
             }
         }
 
@@ -200,5 +210,13 @@ public class Group implements Serializable {
 
     public void setSuperGroup(Group superGroup) {
         this.superGroup = superGroup;
+    }
+
+    public LinkedList<Group> getSubGroups() {
+        return subGroups;
+    }
+
+    public void setSubGroups(LinkedList<Group> subGroups) {
+        this.subGroups = subGroups;
     }
 }
